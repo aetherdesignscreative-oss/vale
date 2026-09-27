@@ -3563,3 +3563,1531 @@ camaraY = 0;
 objetivoCamaraX = 0;
 
 objetivoCamaraY = 0;
+/* =========================================================
+   MENÚS ROMÁNTICOS + SISTEMA DE CANCIONES
+   ========================================================= */
+
+(function () {
+
+    /* ---------------------------------------------------------
+       CANCIONES
+    --------------------------------------------------------- */
+
+    const canciones = [
+        {
+            nombre: "In a God Day",
+            archivo: "in a god day.mp3"
+        },
+        {
+            nombre: "Campus Fashion",
+            archivo: "campus fashion.mp3"
+        },
+        {
+            nombre: "Next To You",
+            archivo: "next to you.mp3"
+        },
+        {
+            nombre: "Origami",
+            archivo: "origami.mp3"
+        }
+    ];
+
+    let cancionActual = -1;
+    let cancionesDisponibles = [...canciones];
+
+
+    /* ---------------------------------------------------------
+       AUDIO EXISTENTE
+       --------------------------------------------------------- */
+
+    const reproductor = document.getElementById("musica");
+
+    if (!reproductor) {
+        console.warn("No se encontró el reproductor #musica");
+        return;
+    }
+
+    reproductor.loop = false;
+    reproductor.volume = 0.45;
+
+
+    /* ---------------------------------------------------------
+       FUNCIÓN PARA OBTENER UNA CANCIÓN ALEATORIA
+       SIN REPETIR HASTA PASAR POR TODAS
+    --------------------------------------------------------- */
+
+    function obtenerCancionAleatoria() {
+
+        if (cancionesDisponibles.length === 0) {
+            cancionesDisponibles = [...canciones];
+        }
+
+        const posicion =
+            Math.floor(
+                Math.random() *
+                cancionesDisponibles.length
+            );
+
+        const cancion =
+            cancionesDisponibles.splice(
+                posicion,
+                1
+            )[0];
+
+        return cancion;
+    }
+
+
+    /* ---------------------------------------------------------
+       REPRODUCIR CANCIÓN
+    --------------------------------------------------------- */
+
+    function reproducirCancion(cancion, desdeInicio = false) {
+
+        if (!cancion) {
+            return;
+        }
+
+        cancionActual =
+            canciones.findIndex(
+                c => c.archivo === cancion.archivo
+            );
+
+        reproductor.src = cancion.archivo;
+
+        reproductor.load();
+
+        reproductor.play()
+            .then(function () {
+
+                actualizarNombreCancion(
+                    cancion.nombre
+                );
+
+            })
+            .catch(function (error) {
+
+                console.log(
+                    "El navegador bloqueó la reproducción:",
+                    error
+                );
+
+            });
+
+    }
+
+
+    /* ---------------------------------------------------------
+       ACTUALIZAR NOMBRE DE CANCIÓN
+    --------------------------------------------------------- */
+
+    function actualizarNombreCancion(nombre) {
+
+        const elementos =
+            document.querySelectorAll(
+                ".nombre-cancion-actual"
+            );
+
+        elementos.forEach(
+            function (elemento) {
+
+                elemento.textContent =
+                    nombre;
+
+            }
+        );
+
+    }
+
+
+    /* ---------------------------------------------------------
+       CUANDO TERMINA UNA CANCIÓN
+       PASA AUTOMÁTICAMENTE A OTRA
+    --------------------------------------------------------- */
+
+    reproductor.addEventListener(
+        "ended",
+        function () {
+
+            const siguiente =
+                obtenerCancionAleatoria();
+
+            reproducirCancion(
+                siguiente
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       PRIMER MENÚ: ELEGIR CANCIÓN
+       ========================================================= */
+
+    const selectorMusica =
+        document.createElement("div");
+
+    selectorMusica.id =
+        "selector-musica-inicial";
+
+
+    selectorMusica.innerHTML = `
+
+        <div class="selector-musica-fondo"></div>
+
+        <div class="selector-musica-card">
+
+            <div class="selector-corazon">
+                ♥
+            </div>
+
+            <span class="selector-pequeno">
+                PARA TI
+            </span>
+
+            <h2>
+                Elige nuestra canción
+            </h2>
+
+            <p>
+                Escoge una y deja que comience
+                nuestro pequeño universo.
+            </p>
+
+            <div class="lista-canciones-inicial">
+
+                ${canciones.map(
+                    function (cancion, indice) {
+
+                        return `
+
+                            <button
+                                class="cancion-inicial"
+                                data-indice="${indice}"
+                            >
+
+                                <span class="icono-cancion">
+                                    ♫
+                                </span>
+
+                                <span>
+                                    ${cancion.nombre}
+                                </span>
+
+                                <span class="flecha-cancion">
+                                    →
+                                </span>
+
+                            </button>
+
+                        `;
+
+                    }
+                ).join("")}
+
+            </div>
+
+            <div class="nombre-cancion-actual">
+                Ninguna canción
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(
+        selectorMusica
+    );
+
+
+    /* ---------------------------------------------------------
+       ESTILOS DEL PRIMER MENÚ
+    --------------------------------------------------------- */
+
+    const estilosMenu =
+        document.createElement("style");
+
+    estilosMenu.textContent = `
+
+        #selector-musica-inicial {
+
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(150, 20, 130, .18),
+                    transparent 50%
+                ),
+                #030203;
+
+            transition:
+                opacity .7s ease,
+                visibility .7s ease;
+
+        }
+
+
+        #selector-musica-inicial.oculto {
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+        }
+
+
+        .selector-musica-card {
+
+            width: min(
+                430px,
+                100%
+            );
+
+            padding: 38px 28px;
+
+            border: 1px solid
+                rgba(255, 170, 220, .22);
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(45, 10, 45, .88),
+                    rgba(12, 4, 18, .95)
+                );
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,.65),
+
+                0 0 60px
+                rgba(220, 30, 190, .12);
+
+            text-align: center;
+
+            color: white;
+
+            backdrop-filter:
+                blur(18px);
+
+        }
+
+
+        .selector-corazon {
+
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            color: #ff8fdc;
+
+            font-size: 30px;
+
+            background:
+                rgba(255, 80, 200, .08);
+
+            box-shadow:
+                0 0 35px
+                rgba(255, 50, 210, .22);
+
+        }
+
+
+        .selector-pequeno {
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+
+            color:
+                rgba(255, 190, 225, .65);
+
+        }
+
+
+        .selector-musica-card h2 {
+
+            margin:
+                12px 0 8px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 30px;
+
+            font-weight: 400;
+
+        }
+
+
+        .selector-musica-card p {
+
+            margin:
+                0 auto 25px;
+
+            max-width: 330px;
+
+            color:
+                rgba(255,255,255,.6);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .lista-canciones-inicial {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+
+        }
+
+
+        .cancion-inicial {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                40px 1fr 25px;
+
+            align-items: center;
+
+            padding: 14px 15px;
+
+            border: 1px solid
+                rgba(255,255,255,.09);
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            color: white;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            transition:
+                transform .25s ease,
+                background .25s ease,
+                border .25s ease;
+
+        }
+
+
+        .cancion-inicial:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                rgba(255, 80, 200, .10);
+
+            border-color:
+                rgba(255, 140, 220, .35);
+
+        }
+
+
+        .icono-cancion {
+
+            color:
+                #ff8edc;
+
+            font-size: 20px;
+
+        }
+
+
+        .flecha-cancion {
+
+            color:
+                rgba(255,255,255,.4);
+
+            text-align: right;
+
+        }
+
+
+        .nombre-cancion-actual {
+
+            margin-top: 18px;
+
+            font-size: 11px;
+
+            color:
+                rgba(255,170,220,.55);
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =====================================================
+           MENÚ INFERIOR
+        ===================================================== */
+
+        #menu-romantico {
+
+            position: fixed;
+
+            z-index: 9000;
+
+            left: 50%;
+
+            bottom: 22px;
+
+            transform:
+                translateX(-50%);
+
+            display: flex;
+
+            gap: 12px;
+
+            padding: 10px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius: 22px;
+
+            background:
+                rgba(12, 4, 18, .72);
+
+            backdrop-filter:
+                blur(18px);
+
+            box-shadow:
+                0 12px 40px
+                rgba(0,0,0,.45);
+
+        }
+
+
+        .boton-menu-romantico {
+
+            width: 52px;
+            height: 52px;
+
+            border: 0;
+
+            border-radius: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255,255,255,.07);
+
+            color: white;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            transition:
+                transform .25s ease,
+                background .25s ease,
+                box-shadow .25s ease;
+
+        }
+
+
+        .boton-menu-romantico:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(255, 80, 200, .14);
+
+            box-shadow:
+                0 0 25px
+                rgba(255, 80, 200, .15);
+
+        }
+
+
+        /* =====================================================
+           PANELES
+        ===================================================== */
+
+        .panel-romantico {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9500;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                rgba(3,2,3,.72);
+
+            backdrop-filter:
+                blur(15px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+            transition:
+                opacity .35s ease,
+                visibility .35s ease;
+
+        }
+
+
+        .panel-romantico.visible {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            pointer-events: auto;
+
+        }
+
+
+        .panel-romantico-contenido {
+
+            position: relative;
+
+            width: min(
+                430px,
+                100%
+            );
+
+            max-height: 85vh;
+
+            overflow-y: auto;
+
+            padding: 35px 25px;
+
+            border:
+                1px solid
+                rgba(255,160,220,.2);
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(35,8,40,.96),
+                    rgba(8,3,13,.98)
+                );
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,.65),
+
+                0 0 60px
+                rgba(220,30,190,.10);
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+
+        .cerrar-panel-romantico {
+
+            position: absolute;
+
+            top: 15px;
+            left: 15px;
+
+            width: 38px;
+            height: 38px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.07);
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+        }
+
+
+        .panel-romantico-icono {
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .panel-romantico h2 {
+
+            margin:
+                5px 0 10px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 28px;
+
+            font-weight: 400;
+
+        }
+
+
+        .panel-romantico p {
+
+            color:
+                rgba(255,255,255,.62);
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           CANCIONES DEL PANEL
+        ===================================================== */
+
+        .cancion-panel {
+
+            width: 100%;
+
+            margin-top: 9px;
+
+            padding: 14px;
+
+            border: 1px solid
+                rgba(255,255,255,.08);
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            color: white;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background .2s ease,
+                transform .2s ease;
+
+        }
+
+
+        .cancion-panel:hover {
+
+            background:
+                rgba(255,80,200,.11);
+
+            transform:
+                translateX(3px);
+
+        }
+
+
+        .cancion-panel.activa {
+
+            border-color:
+                rgba(255,140,220,.4);
+
+            background:
+                rgba(255,80,200,.12);
+
+        }
+
+
+        /* =====================================================
+           FOTOS
+        ===================================================== */
+
+        .fotos-vacias {
+
+            padding:
+                30px 15px;
+
+        }
+
+
+        .candado-fotos {
+
+            width: 75px;
+            height: 75px;
+
+            margin:
+                0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.05);
+
+            font-size: 35px;
+
+            box-shadow:
+                0 0 35px
+                rgba(255,80,200,.12);
+
+        }
+
+
+        .boton-regresar-panel {
+
+            margin-top: 20px;
+
+            padding:
+                12px 22px;
+
+            border: 1px solid
+                rgba(255,160,220,.2);
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.06);
+
+            color: white;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =====================================================
+           CARTA
+        ===================================================== */
+
+        .carta-imagen {
+
+            width: 100%;
+
+            max-height: 60vh;
+
+            object-fit: contain;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(0,0,0,.5);
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            #menu-romantico {
+
+                bottom:
+                    max(15px, env(safe-area-inset-bottom));
+
+            }
+
+            .boton-menu-romantico {
+
+                width: 48px;
+                height: 48px;
+
+            }
+
+            .selector-musica-card {
+
+                padding:
+                    30px 20px;
+
+            }
+
+        }
+
+    `;
+
+    document.head.appendChild(
+        estilosMenu
+    );
+
+
+    /* =========================================================
+       BOTONES DE LA PRIMERA PANTALLA
+       ========================================================= */
+
+    document
+        .querySelectorAll(
+            ".cancion-inicial"
+        )
+        .forEach(
+            function (boton) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        const indice =
+                            Number(
+                                boton.dataset.indice
+                            );
+
+                        const cancion =
+                            canciones[indice];
+
+                        /* Quitamos la canción elegida
+                           del próximo orden aleatorio */
+
+                        cancionesDisponibles =
+                            canciones.filter(
+                                function (c) {
+                                    return (
+                                        c.archivo !==
+                                        cancion.archivo
+                                    );
+                                }
+                            );
+
+                        reproducirCancion(
+                            cancion
+                        );
+
+                        /*
+                           Ocultar selector
+                        */
+
+                        selectorMusica
+                            .classList
+                            .add("oculto");
+
+
+                        /*
+                           Después de elegir la canción,
+                           dejamos que TU botón original
+                           haga exactamente lo que ya hacía.
+                        */
+
+                        const botonComenzar =
+                            document.getElementById(
+                                "boton-comenzar"
+                            );
+
+                        if (botonComenzar) {
+
+                            setTimeout(
+                                function () {
+
+                                    botonComenzar.click();
+
+                                },
+                                250
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+    /* =========================================================
+       CREAR MENÚ INFERIOR
+       ========================================================= */
+
+    const menu =
+        document.createElement("div");
+
+    menu.id =
+        "menu-romantico";
+
+    menu.innerHTML = `
+
+        <button
+            class="boton-menu-romantico"
+            id="abrir-menu-musica"
+            aria-label="Música"
+        >
+            ♫
+        </button>
+
+        <button
+            class="boton-menu-romantico"
+            id="abrir-menu-fotos"
+            aria-label="Fotos"
+        >
+            📷
+        </button>
+
+        <button
+            class="boton-menu-romantico"
+            id="abrir-menu-carta"
+            aria-label="Carta"
+        >
+            💌
+        </button>
+
+    `;
+
+    document.body.appendChild(menu);
+
+
+    /* =========================================================
+       PANEL DE MÚSICA
+       ========================================================= */
+
+    const panelMusica =
+        document.createElement("div");
+
+    panelMusica.className =
+        "panel-romantico";
+
+    panelMusica.id =
+        "panel-musica-romantico";
+
+    panelMusica.innerHTML = `
+
+        <div class="panel-romantico-contenido">
+
+            <button
+                class="cerrar-panel-romantico"
+                data-cerrar-panel
+            >
+                ←
+            </button>
+
+            <div class="panel-romantico-icono">
+                🎵
+            </div>
+
+            <h2>
+                Nuestra música
+            </h2>
+
+            <p>
+                Puedes cambiar nuestra canción
+                cuando quieras.
+            </p>
+
+            <div id="lista-musica-panel">
+
+                ${canciones.map(
+                    function (cancion, indice) {
+
+                        return `
+
+                            <button
+                                class="cancion-panel"
+                                data-cancion-panel="${indice}"
+                            >
+                                ♫ &nbsp;
+                                ${cancion.nombre}
+                            </button>
+
+                        `;
+
+                    }
+                ).join("")}
+
+            </div>
+
+            <div
+                class="nombre-cancion-actual"
+                style="margin-top:18px;"
+            >
+                Ninguna canción
+            </div>
+
+        </div>
+
+    `;
+
+    document.body.appendChild(
+        panelMusica
+    );
+
+
+    /* =========================================================
+       PANEL DE FOTOS
+       ========================================================= */
+
+    const panelFotos =
+        document.createElement("div");
+
+    panelFotos.className =
+        "panel-romantico";
+
+    panelFotos.id =
+        "panel-fotos-romantico";
+
+    panelFotos.innerHTML = `
+
+        <div class="panel-romantico-contenido">
+
+            <button
+                class="cerrar-panel-romantico"
+                data-cerrar-panel
+            >
+                ←
+            </button>
+
+            <div class="panel-romantico-icono">
+                📷
+            </div>
+
+            <h2>
+                Nuestros recuerdos
+            </h2>
+
+            <div class="fotos-vacias">
+
+                <div class="candado-fotos">
+                    🔒
+                </div>
+
+                <h3>
+                    Sin fotos suficientes
+                </h3>
+
+                <p>
+                    Porfavor envíame más fotos
+                    para llenar nuestro pequeño
+                    álbum de recuerdos. ❤️
+                </p>
+
+            </div>
+
+            <button
+                class="boton-regresar-panel"
+                data-cerrar-panel
+            >
+                ← Regresar
+            </button>
+
+        </div>
+
+    `;
+
+    document.body.appendChild(
+        panelFotos
+    );
+
+
+    /* =========================================================
+       PANEL DE CARTA
+       ========================================================= */
+
+    const panelCarta =
+        document.createElement("div");
+
+    panelCarta.className =
+        "panel-romantico";
+
+    panelCarta.id =
+        "panel-carta-romantico";
+
+    panelCarta.innerHTML = `
+
+        <div class="panel-romantico-contenido">
+
+            <button
+                class="cerrar-panel-romantico"
+                data-cerrar-panel
+            >
+                ←
+            </button>
+
+            <div class="panel-romantico-icono">
+                💌
+            </div>
+
+            <h2>
+                Una carta para ti
+            </h2>
+
+            <img
+                src="carta.png"
+                alt="Nuestra carta"
+                class="carta-imagen"
+            >
+
+            <button
+                class="boton-regresar-panel"
+                data-cerrar-panel
+            >
+                ← Regresar
+            </button>
+
+        </div>
+
+    `;
+
+    document.body.appendChild(
+        panelCarta
+    );
+
+
+    /* =========================================================
+       ABRIR / CERRAR PANELES
+       ========================================================= */
+
+    function abrirPanel(panel) {
+
+        if (!panel) {
+            return;
+        }
+
+        panel.classList.add(
+            "visible"
+        );
+
+    }
+
+
+    function cerrarPanel(panel) {
+
+        if (!panel) {
+            return;
+        }
+
+        panel.classList.remove(
+            "visible"
+        );
+
+    }
+
+
+    document
+        .getElementById(
+            "abrir-menu-musica"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                abrirPanel(
+                    panelMusica
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "abrir-menu-fotos"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                abrirPanel(
+                    panelFotos
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "abrir-menu-carta"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                abrirPanel(
+                    panelCarta
+                );
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            "[data-cerrar-panel]"
+        )
+        .forEach(
+            function (boton) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        const panel =
+                            boton.closest(
+                                ".panel-romantico"
+                            );
+
+                        cerrarPanel(
+                            panel
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /* =========================================================
+       CAMBIAR CANCIÓN DESDE EL PANEL
+       ========================================================= */
+
+    document
+        .querySelectorAll(
+            "[data-cancion-panel]"
+        )
+        .forEach(
+            function (boton) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        const indice =
+                            Number(
+                                boton.dataset
+                                    .cancionPanel
+                            );
+
+                        const cancion =
+                            canciones[indice];
+
+                        cancionesDisponibles =
+                            canciones.filter(
+                                function (c) {
+                                    return (
+                                        c.archivo !==
+                                        cancion.archivo
+                                    );
+                                }
+                            );
+
+                        reproducirCancion(
+                            cancion
+                        );
+
+
+                        /*
+                           Marcar canción activa
+                        */
+
+                        document
+                            .querySelectorAll(
+                                ".cancion-panel"
+                            )
+                            .forEach(
+                                function (otro) {
+
+                                    otro.classList
+                                        .remove(
+                                            "activa"
+                                        );
+
+                                }
+                            );
+
+                        boton.classList.add(
+                            "activa"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /* =========================================================
+       DESPUÉS DE LA CONTRASEÑA
+       MOSTRAR EL MENÚ
+       ========================================================= */
+
+    const contenidoFinal =
+        document.getElementById(
+            "contenido"
+        );
+
+
+    if (contenidoFinal) {
+
+        const observador =
+            new MutationObserver(
+                function () {
+
+                    if (
+                        contenidoFinal
+                            .classList
+                            .contains(
+                                "visible"
+                            )
+                    ) {
+
+                        menu.style.display =
+                            "flex";
+
+                    }
+
+                }
+            );
+
+
+        observador.observe(
+            contenidoFinal,
+            {
+                attributes: true,
+                attributeFilter: [
+                    "class"
+                ]
+            }
+        );
+
+    }
+
+
+    /*
+       El menú empieza oculto.
+       Solo aparece después de la contraseña.
+    */
+
+    menu.style.display =
+        "none";
+
+
+    /* =========================================================
+       COMPATIBILIDAD CON EL BOTÓN MUSICAL ORIGINAL
+       ========================================================= */
+
+    /*
+       El sitio original ya tiene #control-musica.
+       Lo dejamos funcionando para no romper nada.
+    */
+
+    const controlOriginal =
+        document.getElementById(
+            "control-musica"
+        );
+
+    if (controlOriginal) {
+
+        controlOriginal.addEventListener(
+            "click",
+            function () {
+
+                /*
+                   Si no hay canción,
+                   seleccionamos una.
+                */
+
+                if (
+                    !reproductor.src ||
+                    reproductor.src.endsWith("/")
+                ) {
+
+                    const nueva =
+                        obtenerCancionAleatoria();
+
+                    reproducirCancion(
+                        nueva
+                    );
+
+                    return;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       CERRAR PANEL TOCANDO FUERA
+       ========================================================= */
+
+    [
+        panelMusica,
+        panelFotos,
+        panelCarta
+    ].forEach(
+        function (panel) {
+
+            panel.addEventListener(
+                "click",
+                function (evento) {
+
+                    if (
+                        evento.target ===
+                        panel
+                    ) {
+
+                        cerrarPanel(
+                            panel
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+})();

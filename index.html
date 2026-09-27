@@ -1,669 +1,275 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <meta name="theme-color"
-          content="#030203">
-
-    <title>Para ti, mi amor</title>
-
-
-    <!-- =========================================
-         FUENTES
-    ========================================== -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
-          rel="stylesheet">
-
-
-    <!-- =========================================
-         CSS
-    ========================================== -->
-
-    <link rel="stylesheet"
-          href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-    <!-- =====================================================
-         ETAPA 1
-         PANTALLA DE INICIO
-    ====================================================== -->
-
-    <section id="pantalla-inicio">
-
-        <div class="inicio-contenido">
-
-            <div class="inicio-linea"></div>
-
-            <span class="inicio-pequeno">
-                PARA TI
-            </span>
-
-            <h1>
-                Mi amor
-            </h1>
-
-            <p>
-                Tengo algo preparado para ti...
-            </p>
-
-            <button id="boton-comenzar">
-
-                <span>
-                    Comenzar
-                </span>
-
-                <span class="flecha">
-                    →
-                </span>
-
-            </button>
-
-            <div class="inicio-linea inferior"></div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ETAPA 2
-         UNIVERSO / GALAXIA
-    ====================================================== -->
-
-    <section id="galaxia-pantalla">
-
-
-        <!-- =============================================
-             TÍTULO
-        ============================================== -->
-
-        <div class="galaxia-titulo">
-
-            <span>
-                PARA TI
-            </span>
-
-            <h2>
-                Gira mi universo
-            </h2>
-
-            <p>
-                Explora nuestro pequeño universo...
-            </p>
-
-        </div>
-
-
-
-        <!-- =============================================
-             UNIVERSO 3D
-
-             Todo lo que pertenece a la galaxia está
-             dentro de este contenedor.
-
-             Las frases estarán ligadas al movimiento
-             de la galaxia mediante CSS + JavaScript.
-        ============================================== -->
-
-        <div id="universo-3d">
-
-
-            <!-- =========================================
-                 CAPA DE ESTRELLAS
-            ========================================== -->
-
-            <div id="estrellas-extra"></div>
-
-
-            <!-- =========================================
-                 GALAXIA PRINCIPAL
-
-                 El canvas solamente dibuja la galaxia.
-                 NO contiene imágenes.
-            ========================================== -->
-
-            <canvas id="galaxia"></canvas>
-
-
-
-            <!-- =========================================
-                 FRASES QUE VIAJAN CON EL UNIVERSO
-            ========================================== -->
-
-            <div id="frases-galaxia">
-
-
-                <span class="frase-galaxia f1">
-                    Te amo
-                </span>
-
-
-                <span class="frase-galaxia f2">
-                    Te adoro
-                </span>
-
-
-                <span class="frase-galaxia f3">
-                    Mi amor
-                </span>
-
-
-                <span class="frase-galaxia f4">
-                    Te quiero
-                </span>
-
-
-                <span class="frase-galaxia f5">
-                    Siempre tú
-                </span>
-
-
-                <span class="frase-galaxia f6">
-                    Mi vida
-                </span>
-
-
-                <span class="frase-galaxia f7">
-                    Contigo
-                </span>
-
-
-                <span class="frase-galaxia f8">
-                    Te adoro 
-                </span>
-
-
-                <span class="frase-galaxia f9">
-                    Eres mi todo
-                </span>
-
-
-                <span class="frase-galaxia f10">
-                    Mi cielo
-                </span>
-
-
-                <span class="frase-galaxia f11">
-                    GUAPA 
-                </span>
-
-
-                <span class="frase-galaxia f12">
-                    Mi preciosa
-                </span>
-
-
-                <span class="frase-galaxia f13">
-                    Mi universo
-                </span>
-
-
-                <span class="frase-galaxia f14">
-                    TE EXTRAÑO
-                </span>
-
-
-                <span class="frase-galaxia f15">
-                    MI TODO
-                </span>
-
-
-                <span class="frase-galaxia f16">
-                    PARA SIEMPRE
-                </span>
-
-
-                <span class="frase-galaxia f17">
-                    ❤️
-                </span>
-
-
-                <span class="frase-galaxia f18">
-                    I LOVE YOU
-                </span>
-
-
-            </div>
-
-
-
-            <!-- =========================================
-                 CENTRO / PORTAL DEL UNIVERSO
-
-                 La interacción se cambiará posteriormente
-                 desde JavaScript por una animación más
-                 inmersiva.
-            ========================================== -->
-
-            <button id="centro-galaxia"
-                    aria-label="Entrar al universo">
-
-                <span class="centro-corazon">
-                    ♥
-                </span>
-
-                <span class="centro-anillo"></span>
-
-            </button>
-
-
-        </div>
-
-
-
-        <!-- =============================================
-             INDICACIÓN
-        ============================================== -->
-
-        <div class="indicacion-galaxia">
-
-            <span>
-                desliza para explorar
-            </span>
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ETAPA 3
-         VIAJE A LA VELOCIDAD DE LA LUZ
-    ====================================================== -->
-
-    <section id="viaje-luz">
-
-        <div class="tunel-luz"></div>
-
-        <div class="lineas-luz"></div>
-
-        <div class="destello-final"></div>
-
-        <div class="viaje-texto">
-
-            <span>
-                hacia mi corazón...
-            </span>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ETAPA 4
-         PANEL PARA BORRAR
-    ====================================================== -->
-
-    <section id="pantalla-borrar">
-
-
-        <div class="fondo-estrellas-borrar"></div>
-
-
-        <div class="panel-borrar">
-
-
-            <div class="mensaje-cumpleanos">
-
-
-                <span class="cumple-pequeno">
-                    PARA EL AMOR DE MI VIDA
-                </span>
-
-
-                <h2>
-                    Feliz cumpleaños
-                </h2>
-
-
-                <div class="cumple-amor">
-                    amor
-                </div>
-
-
-                <div class="cumple-corazon">
-                    ♥
-                </div>
-
-
-            </div>
-
-
-
-            <!-- =========================================
-                 CANVAS QUE SE BORRA
-            ========================================== -->
-
-            <canvas id="scratch-canvas"></canvas>
-
-
-
-            <div class="texto-borrar">
-
-                <span>
-                    Pasa tu dedo por encima
-                </span>
-
-                <small>
-                    para descubrir mi mensaje
-                </small>
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ETAPA 5
-         CONTRASEÑA
-    ====================================================== -->
-
-    <section id="pantalla-password">
-
-
-        <div class="password-card">
-
-
-            <div class="candado">
-                🔒
-            </div>
-
-
-            <div class="password-linea"></div>
-
-
-            <h2>
-                Abre mi corazón
-            </h2>
-
-
-            <p>
-                Ingresa el año de nuestra fecha especial
-            </p>
-
-
-
-            <div class="codigo-puntos">
-
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </div>
-
-
+    <!-- ==========================================
+         PANTALLA DE CONTRASEÑA
+    =========================================== -->
+    <div id="password-screen" class="screen">
+
+        <div class="password-box">
+            <div class="lock-icon">🔐</div>
+
+            <h1>Una pequeña sorpresa...</h1>
+            <p>Escribe la contraseña para entrar ❤️</p>
 
             <input
-                id="codigo"
                 type="password"
-                inputmode="numeric"
-                maxlength="4"
+                id="password-input"
+                placeholder="Contraseña"
                 autocomplete="off"
-                placeholder="••••"
             >
 
-
-
-            <button id="boton-abrir">
-
-                Abrir mi corazón
-
-                <span>
-                    ♥
-                </span>
-
+            <button id="password-button">
+                Entrar
             </button>
 
+            <p id="password-error"></p>
+        </div>
+
+    </div>
 
 
-            <div id="error-password">
-                Ese no es el código, mi amor ❤️
-            </div>
+    <!-- ==========================================
+         PANTALLA PRINCIPAL / GALAXIA
+         NO CAMBIAR LA GALAXIA EXISTENTE
+    =========================================== -->
+    <div id="main-screen" class="screen hidden">
 
+        <!--
+            AQUÍ SE MANTIENE LA GALAXIA QUE YA TIENES.
+            No se modifica desde este HTML.
+        -->
+        <div id="galaxy-container">
+
+            <!-- El contenido actual de tu galaxia
+                 puede mantenerse aquí -->
 
         </div>
 
 
-    </section>
+        <!-- ======================================
+             MENÚ INFERIOR
+        ======================================= -->
+        <div id="bottom-menu">
+
+            <!-- BOTÓN DE MÚSICA -->
+            <button
+                id="music-menu-button"
+                class="menu-button"
+                aria-label="Cambiar canción"
+            >
+                🎵
+            </button>
 
 
-
-    <!-- =====================================================
-         ETAPA 6
-         CONTENIDO FINAL
-    ====================================================== -->
-
-    <main id="contenido">
-
-
-        <!-- =============================================
-             FONDOS
-        ============================================== -->
-
-        <div class="brillo-fondo"></div>
-
-        <div class="aurora aurora-1"></div>
-
-        <div class="aurora aurora-2"></div>
+            <!-- BOTÓN DE FOTOS -->
+            <button
+                id="photos-menu-button"
+                class="menu-button"
+                aria-label="Ver nuestras fotos"
+            >
+                📷
+            </button>
 
 
+            <!-- BOTÓN DE CARTA -->
+            <button
+                id="letter-menu-button"
+                class="menu-button"
+                aria-label="Abrir carta"
+            >
+                💌
+            </button>
 
-        <!-- =============================================
-             EFECTOS
-        ============================================== -->
+        </div>
 
-        <div id="te-amos"></div>
-
-        <div id="corazones"></div>
-
-        <div id="particulas"></div>
-
-
-
-        <!-- =============================================
-             TARJETA CENTRAL
-        ============================================== -->
-
-        <section class="mensaje">
+    </div>
 
 
-            <div class="etiqueta">
+    <!-- ==========================================
+         MENÚ DE MÚSICA
+    =========================================== -->
+    <div id="music-panel" class="panel hidden">
 
-                <span></span>
+        <button class="close-panel" data-close="music-panel">
+            ←
+        </button>
 
-                PARA TI
+        <div class="panel-content">
 
-                <span></span>
+            <div class="panel-icon">🎵</div>
 
-            </div>
+            <h2>Nuestra música</h2>
 
-
-
-            <!-- =========================================
-                 FOTO ELIMINADA
-
-                 Ya no se carga fondo.jpg.
-            ========================================== -->
-
+            <p>Elige una canción ❤️</p>
 
 
-            <!-- =========================================
-                 TITULO
-            ========================================== -->
+            <div id="song-list">
 
-            <h1>
+                <button
+                    class="song-button"
+                    data-song="in a god day.mp3"
+                >
+                    <span>🎶</span>
+                    <span>In a God Day</span>
+                </button>
 
-                Para la mujer<br>
+                <button
+                    class="song-button"
+                    data-song="campus fashion.mp3"
+                >
+                    <span>🎶</span>
+                    <span>Campus Fashion</span>
+                </button>
 
-                que hace especial mi vida.
+                <button
+                    class="song-button"
+                    data-song="next to you.mp3"
+                >
+                    <span>🎶</span>
+                    <span>Next To You</span>
+                </button>
 
-            </h1>
-
-
-
-            <!-- =========================================
-                 SEPARADOR
-            ========================================== -->
-
-            <div class="separador">
-
-                <span></span>
-
-                ♥
-
-                <span></span>
-
-            </div>
-
-
-
-            <!-- =========================================
-                 TEXTO
-            ========================================== -->
-
-            <p class="texto-principal">
-
-                Quizá no siempre encuentre las palabras
-                correctas para decirte todo lo que siento.
-                Pero hay algo que nunca cambia.
-
-            </p>
-
-
-
-            <!-- =========================================
-                 FRASE CENTRAL
-            ========================================== -->
-
-            <div class="te-amo-central">
-
-                𝐓𝐄 𝐃𝐄𝐒𝐄𝐎
+                <button
+                    class="song-button"
+                    data-song="origami.mp3"
+                >
+                    <span>🎶</span>
+                    <span>Origami</span>
+                </button>
 
             </div>
 
 
+            <!-- Canción actual -->
+            <div id="current-song">
 
-            <!-- =========================================
-                 TEXTO FINAL
-            ========================================== -->
+                <span>Reproduciendo:</span>
 
-            <p class="texto-final">
-
-                Y si pudiera elegir de nuevo,
-                volvería a encontrarte a ti.
-
-            </p>
-
-
-
-            <!-- =========================================
-                 FIRMA
-            ========================================== -->
-
-            <div class="firma">
-
-                <span>
-                    Siempre tuyo
-                </span>
-
-                <strong>
-                    ♥
+                <strong id="current-song-name">
+                    Ninguna canción
                 </strong>
 
             </div>
 
+        </div>
 
-        </section>
-
-
-
-        <!-- =============================================
-             CONTROL DE MÚSICA
-        ============================================== -->
-
-        <button id="control-musica"
-                aria-label="Controlar música">
-
-            <span class="icono-musica">
-                ♫
-            </span>
+    </div>
 
 
-            <span class="ondas">
+    <!-- ==========================================
+         MENÚ DE FOTOS
+    =========================================== -->
+    <div id="photos-panel" class="panel hidden">
 
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-
-            </span>
-
+        <button class="close-panel" data-close="photos-panel">
+            ←
         </button>
 
+        <div class="panel-content">
+
+            <div class="panel-icon">📷</div>
+
+            <h2>Nuestros recuerdos</h2>
 
 
-        <div class="frase-esquina">
+            <!--
+                Estado inicial:
+                Todavía no hay suficientes fotos.
+            -->
+            <div id="photos-empty">
 
-            contigo, siempre.
+                <div class="photo-lock">
+                    🔒
+                </div>
+
+                <h3>Sin fotos suficientes</h3>
+
+                <p>
+                    Porfavor envíame más fotos para llenar
+                    este pequeño álbum de nuestros recuerdos ❤️
+                </p>
+
+            </div>
+
+
+            <!--
+                GALERÍA
+                Aquí después podremos poner todas las fotos.
+            -->
+            <div id="photo-gallery" class="hidden">
+
+                <!--
+                    Las fotos se agregarán aquí.
+                    Ejemplo:
+
+                    <img src="foto1.jpg" alt="Nuestro recuerdo">
+                -->
+
+            </div>
+
+
+            <button id="back-from-photos" class="back-button">
+                ← Regresar
+            </button>
 
         </div>
 
-
-    </main>
-
+    </div>
 
 
-    <!-- =====================================================
-         MÚSICA
-    ====================================================== -->
+    <!-- ==========================================
+         MENÚ DE CARTA
+    =========================================== -->
+    <div id="letter-panel" class="panel hidden">
 
-    <audio id="musica"
-           loop>
+        <button class="close-panel" data-close="letter-panel">
+            ←
+        </button>
 
-        <source src="musica.mp3"
-                type="audio/mpeg">
+        <div class="letter-content">
 
-    </audio>
+            <h2>Para ti ❤️</h2>
+
+            <div class="letter-image-container">
+
+                <img
+                    id="letter-image"
+                    src="carta.png"
+                    alt="Carta"
+                >
+
+            </div>
 
 
+            <button id="back-from-letter" class="back-button">
+                ← Regresar
+            </button>
 
-    <!-- =====================================================
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         REPRODUCTOR DE MÚSICA
+    =========================================== -->
+    <audio id="music-player" preload="auto"></audio>
+
+
+    <!-- ==========================================
          JAVASCRIPT
-    ====================================================== -->
-
+    =========================================== -->
     <script src="script.js"></script>
 
-
 </body>
-
 </html>
