@@ -1,0 +1,3965 @@
+/* =========================================================
+   UNIVERSO ROMÁNTICO
+   STYLE.CSS COMPLETO
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #160013 0%,
+            #080008 35%,
+            #020002 70%,
+            #000 100%
+        );
+
+    color: #fff;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+canvas {
+    display: block;
+}
+
+::selection {
+    background: rgba(255, 50, 180, .35);
+    color: #fff;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --negro:
+        #000000;
+
+    --negro-suave:
+        #030003;
+
+    --rosa:
+        #ff4fcf;
+
+    --rosa-claro:
+        #ff9de8;
+
+    --rosa-fuerte:
+        #ff168e;
+
+    --morado:
+        #8d22ff;
+
+    --morado-claro:
+        #c15cff;
+
+    --vino:
+        #5d163b;
+
+    --blanco:
+        #fff7fc;
+
+    --texto:
+        rgba(255, 245, 250, .88);
+
+    --texto-suave:
+        rgba(255, 225, 240, .62);
+}
+
+
+/* =========================================================
+   PANTALLAS GENERALES
+========================================================= */
+
+#pantalla-inicio,
+#galaxia-pantalla,
+#viaje-luz,
+#pantalla-borrar,
+#pantalla-password,
+#contenido {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ETAPA 1
+   PANTALLA DE INICIO
+========================================================= */
+
+#pantalla-inicio {
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(105, 12, 83, .26),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(83, 8, 65, .20),
+            transparent 48%
+        ),
+        #010001;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease,
+        transform 1.2s cubic-bezier(.77, 0, .18, 1);
+}
+
+#pantalla-inicio.oculta {
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        scale(1.08);
+
+}
+
+
+/* ---------------------------------------------------------
+   PEQUEÑAS ESTRELLAS DEL INICIO
+--------------------------------------------------------- */
+
+#pantalla-inicio::before,
+#pantalla-inicio::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.65) 0 1px,
+            transparent 1.5px
+        );
+
+    background-size:
+        115px 130px;
+
+    opacity: .22;
+
+    animation:
+        estrellasInicio 12s linear infinite;
+}
+
+#pantalla-inicio::after {
+
+    background-size:
+        175px 185px;
+
+    opacity: .12;
+
+    animation-duration: 20s;
+
+    animation-direction: reverse;
+}
+
+
+@keyframes estrellasInicio {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-130px);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   CONTENIDO
+--------------------------------------------------------- */
+
+.inicio-contenido {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(
+        90%,
+        520px
+    );
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    animation:
+        entradaInicio 1.5s
+        cubic-bezier(.22, 1, .36, 1)
+        both;
+}
+
+@keyframes entradaInicio {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LÍNEAS
+--------------------------------------------------------- */
+
+.inicio-linea {
+
+    width: 90px;
+    height: 1px;
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 125, 204, .85),
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 30, 170, .5);
+}
+
+.inicio-linea.inferior {
+
+    margin-top: 32px;
+    margin-bottom: 0;
+
+    width: 55px;
+
+    opacity: .5;
+}
+
+
+/* ---------------------------------------------------------
+   PARA TI
+--------------------------------------------------------- */
+
+.inicio-pequeno {
+
+    color:
+        rgba(255, 180, 224, .78);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        .42em;
+
+    margin-left:
+        .42em;
+
+    margin-bottom:
+        13px;
+}
+
+
+/* ---------------------------------------------------------
+   TÍTULO
+--------------------------------------------------------- */
+
+.inicio-contenido h1 {
+
+    color:
+        #fff7fc;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(
+            65px,
+            14vw,
+            105px
+        );
+
+    font-weight:
+        400;
+
+    line-height:
+        .95;
+
+    text-shadow:
+        0 0 12px rgba(255, 80, 190, .35),
+        0 0 35px rgba(150, 20, 130, .22);
+
+    margin-bottom:
+        20px;
+}
+
+
+/* ---------------------------------------------------------
+   SUBTÍTULO
+--------------------------------------------------------- */
+
+.inicio-contenido p {
+
+    color:
+        rgba(255, 235, 246, .63);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        12px;
+
+    font-weight:
+        300;
+
+    letter-spacing:
+        .08em;
+
+    margin-bottom:
+        32px;
+}
+
+
+/* ---------------------------------------------------------
+   BOTÓN COMENZAR
+--------------------------------------------------------- */
+
+#boton-comenzar {
+
+    position: relative;
+
+    min-width:
+        190px;
+
+    padding:
+        14px 22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        18px;
+
+    border:
+        1px solid
+        rgba(255, 125, 208, .45);
+
+    border-radius:
+        50px;
+
+    color:
+        #fff;
+
+    background:
+        rgba(255, 255, 255, .025);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        .14em;
+
+    transition:
+        .35s ease;
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 30, 180, .06);
+}
+
+#boton-comenzar:hover {
+
+    background:
+        rgba(255, 50, 180, .12);
+
+    border-color:
+        rgba(255, 150, 220, .85);
+
+    box-shadow:
+        0 0 35px
+        rgba(255, 30, 180, .25);
+
+    transform:
+        translateY(-2px);
+}
+
+#boton-comenzar:active {
+
+    transform:
+        scale(.96);
+}
+
+#boton-comenzar .flecha {
+
+    font-size:
+        18px;
+
+    color:
+        #ff8ad9;
+
+    transition:
+        transform .3s ease;
+}
+
+#boton-comenzar:hover .flecha {
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================================
+   ETAPA 2
+   GALAXIA
+========================================================= */
+
+#galaxia-pantalla {
+
+    z-index: 900;
+
+    visibility: hidden;
+    opacity: 0;
+
+    background:
+        #000;
+
+    perspective:
+        1000px;
+
+    transform:
+        perspective(1000px)
+        rotateX(var(--camara-y, 0deg))
+        rotateY(var(--camara-x, 0deg))
+        scale(var(--portal-scale, 1));
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        opacity .9s ease,
+        visibility .9s ease,
+        transform .1s linear;
+
+    touch-action:
+        none;
+}
+
+#galaxia-pantalla.visible {
+
+    visibility:
+        visible;
+
+    opacity:
+        1;
+}
+
+
+/* ---------------------------------------------------------
+   TÍTULO DE GALAXIA
+--------------------------------------------------------- */
+
+.galaxia-titulo {
+
+    position:
+        absolute;
+
+    z-index:
+        50;
+
+    top:
+        clamp(
+            28px,
+            6vh,
+            65px
+        );
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        90%;
+
+    text-align:
+        center;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.galaxia-titulo span {
+
+    display:
+        block;
+
+    color:
+        rgba(255, 160, 220, .65);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        .45em;
+
+    margin-left:
+        .45em;
+
+    margin-bottom:
+        7px;
+}
+
+.galaxia-titulo h2 {
+
+    color:
+        rgba(255, 245, 252, .94);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-style:
+        italic;
+
+    font-size:
+        clamp(
+            28px,
+            5vw,
+            44px
+        );
+
+    font-weight:
+        500;
+
+    line-height:
+        1;
+}
+
+.galaxia-titulo p {
+
+    margin-top:
+        8px;
+
+    color:
+        rgba(255, 225, 242, .48);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        .08em;
+}
+
+
+/* ---------------------------------------------------------
+   UNIVERSO
+--------------------------------------------------------- */
+
+#universo-3d {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    overflow:
+        hidden;
+
+    transform-style:
+        preserve-3d;
+
+    perspective:
+        900px;
+
+    touch-action:
+        none;
+}
+
+
+/* ---------------------------------------------------------
+   CANVAS GALAXIA
+--------------------------------------------------------- */
+
+#galaxia {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    z-index:
+        5;
+
+    touch-action:
+        none;
+
+    cursor:
+        grab;
+}
+
+#galaxia:active {
+
+    cursor:
+        grabbing;
+}
+
+
+/* ---------------------------------------------------------
+   ESTRELLAS EXTRA
+--------------------------------------------------------- */
+
+#estrellas-extra {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        2;
+
+    pointer-events:
+        none;
+
+    background:
+
+        radial-gradient(
+            circle at 13% 22%,
+            rgba(255,255,255,.8) 0 1px,
+            transparent 1.5px
+        ),
+
+        radial-gradient(
+            circle at 81% 18%,
+            rgba(255,200,245,.8) 0 1px,
+            transparent 1.5px
+        ),
+
+        radial-gradient(
+            circle at 72% 72%,
+            rgba(255,255,255,.65) 0 1px,
+            transparent 1.5px
+        ),
+
+        radial-gradient(
+            circle at 24% 79%,
+            rgba(220,180,255,.7) 0 1px,
+            transparent 1.5px
+        );
+
+    opacity:
+        .75;
+}
+
+
+/* =========================================================
+   FRASES DE LA GALAXIA
+========================================================= */
+
+#frases-galaxia {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        20;
+
+    pointer-events:
+        none;
+
+    transform-style:
+        preserve-3d;
+
+    perspective:
+        900px;
+
+    overflow:
+        visible;
+}
+
+
+/* ---------------------------------------------------------
+   FRASE BASE
+--------------------------------------------------------- */
+
+.frase-galaxia {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    display:
+        block;
+
+    white-space:
+        nowrap;
+
+    color:
+        rgba(255, 228, 247, .86);
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        clamp(
+            17px,
+            2.8vw,
+            27px
+        );
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        .02em;
+
+    transform-style:
+        preserve-3d;
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+
+    text-shadow:
+        0 0 7px rgba(255, 60, 190, .65),
+        0 0 18px rgba(175, 25, 180, .42);
+
+    user-select:
+        none;
+
+    transition:
+        color .3s ease;
+}
+
+
+/* ---------------------------------------------------------
+   VARIACIONES DE FRASES
+--------------------------------------------------------- */
+
+.f1,
+.f8,
+.f18 {
+
+    color:
+        #fff;
+
+    font-size:
+        clamp(
+            20px,
+            3.3vw,
+            31px
+        );
+
+    text-shadow:
+        0 0 8px #ff7cdb,
+        0 0 22px rgba(255, 20, 190, .7);
+}
+
+.f3,
+.f13 {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    color:
+        #ffb6e9;
+}
+
+.f9 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-style:
+        italic;
+
+    font-size:
+        clamp(
+            18px,
+            3vw,
+            28px
+        );
+}
+
+.f11 {
+
+    color:
+        #ffd7ec;
+}
+
+.f17 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    color:
+        #ff83d6;
+
+    font-size:
+        26px;
+}
+
+
+/* =========================================================
+   CENTRO / PORTAL
+========================================================= */
+
+#centro-galaxia {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        clamp(
+            74px,
+            12vw,
+            115px
+        );
+
+    height:
+        clamp(
+            74px,
+            12vw,
+            115px
+        );
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index:
+        100;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.95) 0%,
+            rgba(255,110,215,.9) 7%,
+            rgba(180,20,190,.38) 24%,
+            rgba(70,5,100,.18) 45%,
+            transparent 69%
+        );
+
+    box-shadow:
+
+        0 0 15px
+        rgba(255,255,255,.7),
+
+        0 0 35px
+        rgba(255,40,205,.8),
+
+        0 0 80px
+        rgba(150,20,255,.55),
+
+        0 0 140px
+        rgba(110,10,200,.35);
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 1.5s cubic-bezier(.16, 1, .3, 1),
+        filter .6s ease;
+
+    animation:
+        portalRespirar 3s ease-in-out infinite;
+
+    touch-action:
+        manipulation;
+}
+
+@keyframes portalRespirar {
+
+    0%,
+    100% {
+
+        filter:
+            brightness(.95);
+
+    }
+
+    50% {
+
+        filter:
+            brightness(1.25);
+
+    }
+}
+
+#centro-galaxia:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.12);
+
+    filter:
+        brightness(1.3);
+}
+
+#centro-galaxia:active {
+
+    transform:
+        translate(-50%, -50%)
+        scale(.95);
+}
+
+
+/* ---------------------------------------------------------
+   CORAZÓN
+--------------------------------------------------------- */
+
+.centro-corazon {
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    color:
+        #fff;
+
+    font-size:
+        clamp(
+            23px,
+            4vw,
+            38px
+        );
+
+    line-height:
+        1;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px #ff5ad4,
+        0 0 35px #ff19bb;
+
+    animation:
+        corazonPortal 1.8s ease-in-out infinite;
+}
+
+@keyframes corazonPortal {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.92);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.13);
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   ANILLO
+--------------------------------------------------------- */
+
+.centro-anillo {
+
+    position:
+        absolute;
+
+    inset:
+        -17px;
+
+    border:
+        1px solid
+        rgba(255, 112, 220, .58);
+
+    border-radius:
+        50%;
+
+    box-shadow:
+        inset 0 0 18px
+        rgba(255, 30, 200, .25),
+
+        0 0 18px
+        rgba(255, 30, 200, .5);
+
+    animation:
+        anilloPortal 4s linear infinite;
+}
+
+@keyframes anilloPortal {
+
+    from {
+
+        transform:
+            rotate(0deg)
+            scale(.92);
+
+        opacity:
+            .65;
+
+    }
+
+    50% {
+
+        transform:
+            rotate(180deg)
+            scale(1.08);
+
+        opacity:
+            1;
+
+    }
+
+    to {
+
+        transform:
+            rotate(360deg)
+            scale(.92);
+
+        opacity:
+            .65;
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PORTAL ACTIVADO
+--------------------------------------------------------- */
+
+#galaxia-pantalla.portal-activado
+#centro-galaxia {
+
+    animation:
+        portalExplosion 1.7s
+        cubic-bezier(.16, 1, .3, 1)
+        forwards;
+}
+
+@keyframes portalExplosion {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+    }
+
+    55% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(2.8);
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(9);
+
+        opacity:
+            0;
+    }
+}
+
+
+/* =========================================================
+   INDICACIÓN
+========================================================= */
+
+.indicacion-galaxia {
+
+    position:
+        absolute;
+
+    z-index:
+        120;
+
+    left:
+        50%;
+
+    bottom:
+        clamp(
+            24px,
+            5vh,
+            45px
+        );
+
+    transform:
+        translateX(-50%);
+
+    pointer-events:
+        none;
+
+    color:
+        rgba(255, 220, 240, .48);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .22em;
+
+    text-transform:
+        lowercase;
+
+    animation:
+        indicacion 2.4s ease-in-out infinite;
+}
+
+@keyframes indicacion {
+
+    0%,
+    100% {
+
+        opacity:
+            .35;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+
+    }
+
+    50% {
+
+        opacity:
+            .85;
+
+        transform:
+            translateX(-50%)
+            translateY(-5px);
+
+    }
+}
+
+
+/* =========================================================
+   ETAPA 3
+   VIAJE A LA VELOCIDAD DE LA LUZ
+========================================================= */
+
+#viaje-luz {
+
+    z-index:
+        950;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    visibility:
+        hidden;
+
+    opacity:
+        0;
+
+    background:
+        #000;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+#viaje-luz.activo {
+
+    visibility:
+        visible;
+
+    opacity:
+        1;
+}
+
+
+/* ---------------------------------------------------------
+   TÚNEL
+--------------------------------------------------------- */
+
+.tunel-luz {
+
+    position:
+        absolute;
+
+    inset:
+        -30%;
+
+    background:
+
+        repeating-radial-gradient(
+            ellipse at center,
+            transparent 0 4%,
+            rgba(255,255,255,.06) 4.2% 4.35%,
+            transparent 4.5% 8%
+        );
+
+    filter:
+        blur(1px);
+
+    transform:
+        perspective(500px)
+        scale(.2);
+
+    opacity:
+        0;
+}
+
+#viaje-luz.activo .tunel-luz {
+
+    animation:
+        tunelEntrada 2s
+        cubic-bezier(.2, .8, .2, 1)
+        forwards;
+}
+
+@keyframes tunelEntrada {
+
+    0% {
+
+        transform:
+            perspective(500px)
+            scale(.05);
+
+        opacity:
+            0;
+
+    }
+
+    20% {
+
+        opacity:
+            .45;
+
+    }
+
+    100% {
+
+        transform:
+            perspective(500px)
+            scale(5);
+
+        opacity:
+            1;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LÍNEAS DE VELOCIDAD
+--------------------------------------------------------- */
+
+.lineas-luz {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        repeating-conic-gradient(
+            from 0deg,
+            transparent 0deg 3deg,
+            rgba(255,255,255,.7) 3.3deg 3.7deg,
+            transparent 4deg 8deg
+        );
+
+    mask-image:
+        radial-gradient(
+            ellipse,
+            black 0%,
+            transparent 58%
+        );
+
+    -webkit-mask-image:
+        radial-gradient(
+            ellipse,
+            black 0%,
+            transparent 58%
+        );
+
+    opacity:
+        0;
+
+    transform:
+        scale(.1);
+}
+
+#viaje-luz.activo .lineas-luz {
+
+    animation:
+        lineasVelocidad 2s
+        cubic-bezier(.15, .85, .25, 1)
+        forwards;
+}
+
+@keyframes lineasVelocidad {
+
+    0% {
+
+        opacity:
+            0;
+
+        transform:
+            scale(.05)
+            rotate(0deg);
+
+    }
+
+    25% {
+
+        opacity:
+            .45;
+
+    }
+
+    100% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(4)
+            rotate(20deg);
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   DESTELLO FINAL
+--------------------------------------------------------- */
+
+.destello-final {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        20px;
+
+    height:
+        20px;
+
+    border-radius:
+        50%;
+
+    background:
+        #fff;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    box-shadow:
+
+        0 0 20px #fff,
+
+        0 0 60px #ff8ae0,
+
+        0 0 120px #ff28bd,
+
+        0 0 220px #8d25ff;
+
+    z-index:
+        10;
+}
+
+#viaje-luz.activo .destello-final {
+
+    animation:
+        destelloFinal 2.05s
+        cubic-bezier(.16, 1, .3, 1)
+        forwards;
+}
+
+@keyframes destelloFinal {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+
+        opacity:
+            0;
+
+    }
+
+    72% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.8);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(90);
+
+        opacity:
+            0;
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   TEXTO DEL VIAJE
+--------------------------------------------------------- */
+
+.viaje-texto {
+
+    position:
+        relative;
+
+    z-index:
+        20;
+
+    color:
+        rgba(255, 240, 250, .9);
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        clamp(
+            24px,
+            5vw,
+            42px
+        );
+
+    text-shadow:
+        0 0 15px
+        rgba(255, 80, 200, .8);
+
+    opacity:
+        0;
+}
+
+#viaje-luz.activo .viaje-texto {
+
+    animation:
+        textoViaje 2s ease forwards;
+}
+
+@keyframes textoViaje {
+
+    0%,
+    30% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    55%,
+    75% {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(-10px);
+
+    }
+}
+
+
+/* =========================================================
+   ETAPA 4
+   SCRATCH
+========================================================= */
+
+#pantalla-borrar {
+
+    z-index:
+        800;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    visibility:
+        hidden;
+
+    opacity:
+        0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #16030c,
+            #030003 70%,
+            #000
+        );
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+#pantalla-borrar.visible {
+
+    visibility:
+        visible;
+
+    opacity:
+        1;
+}
+
+
+/* ---------------------------------------------------------
+   ESTRELLAS DEL FONDO
+--------------------------------------------------------- */
+
+.fondo-estrellas-borrar {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.7) 0 1px,
+            transparent 1.4px
+        );
+
+    background-size:
+        110px 120px;
+
+    opacity:
+        .18;
+
+    animation:
+        fondoBorrar 18s linear infinite;
+}
+
+@keyframes fondoBorrar {
+
+    from {
+        transform:
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateY(-120px);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PANEL
+--------------------------------------------------------- */
+
+.panel-borrar {
+
+    position:
+        relative;
+
+    width:
+        min(
+            90%,
+            420px
+        );
+
+    min-height:
+        min(
+            70vh,
+            570px
+        );
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        32px 22px;
+
+    border:
+        1px solid
+        rgba(255, 130, 190, .18);
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(70,5,35,.12)
+        );
+
+    box-shadow:
+
+        0 20px 80px
+        rgba(0,0,0,.6),
+
+        inset 0 0 50px
+        rgba(255,30,140,.025);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    animation:
+        entradaScratch .9s
+        cubic-bezier(.16, 1, .3, 1)
+        both;
+}
+
+@keyframes entradaScratch {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(30px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   MENSAJE
+--------------------------------------------------------- */
+
+.mensaje-cumpleanos {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    text-align:
+        center;
+
+    margin-bottom:
+        25px;
+}
+
+.cumple-pequeno {
+
+    display:
+        block;
+
+    color:
+        rgba(255, 188, 214, .58);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .32em;
+
+    margin-left:
+        .32em;
+
+    margin-bottom:
+        10px;
+}
+
+.mensaje-cumpleanos h2 {
+
+    color:
+        #fff4fa;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            35px,
+            8vw,
+            48px
+        );
+
+    font-weight:
+        500;
+
+    line-height:
+        .9;
+}
+
+.cumple-amor {
+
+    color:
+        #ff9bd9;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        40px;
+
+    margin-top:
+        5px;
+}
+
+.cumple-corazon {
+
+    color:
+        #ff4cab;
+
+    font-size:
+        22px;
+
+    margin-top:
+        5px;
+
+    animation:
+        latidoCumple 1.4s ease-in-out infinite;
+}
+
+@keyframes latidoCumple {
+
+    0%,
+    100% {
+        transform:
+            scale(.9);
+    }
+
+    50% {
+        transform:
+            scale(1.15);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   SCRATCH CANVAS
+--------------------------------------------------------- */
+
+#scratch-canvas {
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    width:
+        min(
+            100%,
+            350px
+        );
+
+    height:
+        170px;
+
+    border-radius:
+        16px;
+
+    cursor:
+        crosshair;
+
+    touch-action:
+        none;
+
+    box-shadow:
+
+        0 10px 40px
+        rgba(0,0,0,.45),
+
+        0 0 20px
+        rgba(160,20,90,.15);
+}
+
+
+/* ---------------------------------------------------------
+   TEXTO SCRATCH
+--------------------------------------------------------- */
+
+.texto-borrar {
+
+    margin-top:
+        20px;
+
+    text-align:
+        center;
+
+    color:
+        rgba(255, 220, 235, .72);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .08em;
+}
+
+.texto-borrar small {
+
+    display:
+        block;
+
+    margin-top:
+        6px;
+
+    color:
+        rgba(255, 180, 215, .4);
+
+    font-size:
+        8px;
+}
+
+
+/* =========================================================
+   ETAPA 5
+   PASSWORD
+========================================================= */
+
+#pantalla-password {
+
+    z-index:
+        700;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    visibility:
+        hidden;
+
+    opacity:
+        0;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(100,10,70,.18),
+            transparent 35%
+        ),
+
+        #010001;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+#pantalla-password.visible {
+
+    visibility:
+        visible;
+
+    opacity:
+        1;
+}
+
+
+/* ---------------------------------------------------------
+   CARD PASSWORD
+--------------------------------------------------------- */
+
+.password-card {
+
+    position:
+        relative;
+
+    width:
+        min(
+            88%,
+            390px
+        );
+
+    padding:
+        42px 28px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        rgba(255, 125, 200, .18);
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(70,0,45,.12)
+        );
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.65);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    animation:
+        entradaPassword .9s
+        cubic-bezier(.16, 1, .3, 1)
+        both;
+}
+
+@keyframes entradaPassword {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px)
+            scale(.97);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   CANDADO
+--------------------------------------------------------- */
+
+.candado {
+
+    font-size:
+        28px;
+
+    filter:
+        grayscale(.2);
+
+    margin-bottom:
+        15px;
+
+    opacity:
+        .9;
+}
+
+
+/* ---------------------------------------------------------
+   LÍNEA
+--------------------------------------------------------- */
+
+.password-linea {
+
+    width:
+        45px;
+
+    height:
+        1px;
+
+    margin:
+        0 auto 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff75c9,
+            transparent
+        );
+}
+
+
+/* ---------------------------------------------------------
+   TÍTULO
+--------------------------------------------------------- */
+
+.password-card h2 {
+
+    color:
+        #fff6fb;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        32px;
+
+    font-weight:
+        500;
+
+    font-style:
+        italic;
+}
+
+.password-card p {
+
+    margin-top:
+        8px;
+
+    color:
+        rgba(255, 225, 240, .52);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        .04em;
+}
+
+
+/* ---------------------------------------------------------
+   PUNTOS
+--------------------------------------------------------- */
+
+.codigo-puntos {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        13px;
+
+    margin:
+        25px 0 12px;
+}
+
+.codigo-puntos span {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,.14);
+
+    box-shadow:
+        0 0 0
+        rgba(255,50,190,0);
+
+    transition:
+        .25s ease;
+}
+
+.codigo-puntos span.activo {
+
+    background:
+        #ff72cf;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,50,190,.8);
+
+    transform:
+        scale(1.25);
+}
+
+
+/* ---------------------------------------------------------
+   INPUT
+--------------------------------------------------------- */
+
+#codigo {
+
+    width:
+        150px;
+
+    height:
+        45px;
+
+    display:
+        block;
+
+    margin:
+        0 auto;
+
+    border:
+        0;
+
+    border-bottom:
+        1px solid
+        rgba(255, 130, 205, .35);
+
+    outline:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        #fff;
+
+    text-align:
+        center;
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        19px;
+
+    letter-spacing:
+        .45em;
+
+    padding-left:
+        .45em;
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+#codigo:focus {
+
+    border-color:
+        #ff71ca;
+
+    box-shadow:
+        0 8px 20px
+        -12px
+        rgba(255,60,190,.7);
+}
+
+#codigo::placeholder {
+
+    color:
+        rgba(255,255,255,.18);
+}
+
+
+/* ---------------------------------------------------------
+   BOTÓN PASSWORD
+--------------------------------------------------------- */
+
+#boton-abrir {
+
+    width:
+        100%;
+
+    margin-top:
+        27px;
+
+    padding:
+        13px 18px;
+
+    border:
+        1px solid
+        rgba(255, 110, 195, .35);
+
+    border-radius:
+        30px;
+
+    color:
+        #fff;
+
+    background:
+        rgba(255, 40, 160, .06);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .08em;
+
+    transition:
+        .3s ease;
+}
+
+#boton-abrir span {
+
+    margin-left:
+        8px;
+
+    color:
+        #ff82d2;
+}
+
+#boton-abrir:hover {
+
+    background:
+        rgba(255, 40, 160, .13);
+
+    border-color:
+        rgba(255, 140, 220, .75);
+
+    box-shadow:
+        0 0 25px
+        rgba(255,30,180,.15);
+}
+
+
+/* ---------------------------------------------------------
+   ERROR
+--------------------------------------------------------- */
+
+#error-password {
+
+    height:
+        18px;
+
+    margin-top:
+        12px;
+
+    color:
+        #ff87b9;
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        8px;
+
+    opacity:
+        0;
+
+    transform:
+        translateY(-3px);
+
+    transition:
+        .3s ease;
+}
+
+#error-password.visible {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   ETAPA 6
+   CONTENIDO FINAL
+========================================================= */
+
+#contenido {
+
+    z-index:
+        500;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    visibility:
+        hidden;
+
+    opacity:
+        0;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(95,10,60,.23),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            ellipse at 15% 85%,
+            rgba(105,25,75,.12),
+            transparent 30%
+        ),
+
+        #020002;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+#contenido.visible {
+
+    visibility:
+        visible;
+
+    opacity:
+        1;
+}
+
+
+/* =========================================================
+   BRILLO DE FONDO
+========================================================= */
+
+.brillo-fondo {
+
+    position:
+        absolute;
+
+    inset:
+        -20%;
+
+    pointer-events:
+        none;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,60,160,.08),
+            transparent 25%
+        );
+
+    filter:
+        blur(20px);
+
+    animation:
+        brilloFinal 7s ease-in-out infinite;
+}
+
+@keyframes brilloFinal {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.95);
+
+        opacity:
+            .55;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.08);
+
+        opacity:
+            1;
+
+    }
+}
+
+
+/* =========================================================
+   AURORAS
+========================================================= */
+
+.aurora {
+
+    position:
+        absolute;
+
+    width:
+        55vw;
+
+    height:
+        35vw;
+
+    max-width:
+        600px;
+
+    max-height:
+        400px;
+
+    border-radius:
+        50%;
+
+    filter:
+        blur(80px);
+
+    opacity:
+        .09;
+
+    pointer-events:
+        none;
+}
+
+.aurora-1 {
+
+    left:
+        -15%;
+
+    bottom:
+        -15%;
+
+    background:
+        #9b1f72;
+
+    animation:
+        aurora1 12s ease-in-out infinite;
+}
+
+.aurora-2 {
+
+    right:
+        -15%;
+
+    top:
+        -15%;
+
+    background:
+        #5420a5;
+
+    animation:
+        aurora2 15s ease-in-out infinite;
+}
+
+@keyframes aurora1 {
+
+    0%,
+    100% {
+        transform:
+            translate(0,0)
+            rotate(0);
+    }
+
+    50% {
+        transform:
+            translate(70px,-40px)
+            rotate(10deg);
+    }
+}
+
+@keyframes aurora2 {
+
+    0%,
+    100% {
+        transform:
+            translate(0,0)
+            rotate(0);
+    }
+
+    50% {
+        transform:
+            translate(-60px,50px)
+            rotate(-12deg);
+    }
+}
+
+
+/* =========================================================
+   CONTENEDORES DE EFECTOS
+========================================================= */
+
+#te-amos,
+#corazones,
+#particulas {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    overflow:
+        hidden;
+
+    pointer-events:
+        none;
+}
+
+
+/* =========================================================
+   TE AMO FLOTANTES
+========================================================= */
+
+#te-amos {
+
+    z-index:
+        3;
+}
+
+.te-amo {
+
+    position:
+        absolute;
+
+    white-space:
+        nowrap;
+
+    opacity:
+        0;
+
+    animation:
+        flotarAmor
+        14s ease-in-out infinite;
+
+    text-shadow:
+        0 0 8px rgba(255,80,160,.25);
+
+    pointer-events:
+        none;
+}
+
+@keyframes flotarAmor {
+
+    0% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(20px)
+            scale(.9)
+            rotate(-4deg);
+
+    }
+
+    15% {
+
+        opacity:
+            .38;
+
+    }
+
+    50% {
+
+        opacity:
+            .72;
+
+        transform:
+            translateY(-25px)
+            scale(1)
+            rotate(3deg);
+
+    }
+
+    80% {
+
+        opacity:
+            .3;
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(-70px)
+            scale(.94)
+            rotate(-3deg);
+
+    }
+}
+
+
+/* =========================================================
+   CORAZONES
+========================================================= */
+
+#corazones {
+
+    z-index:
+        4;
+}
+
+.corazon {
+
+    position:
+        absolute;
+
+    bottom:
+        -30px;
+
+    color:
+        rgba(255, 100, 175, .45);
+
+    opacity:
+        0;
+
+    animation:
+        subirCorazon
+        10s linear infinite;
+
+    text-shadow:
+        0 0 10px
+        rgba(255,50,160,.5);
+}
+
+@keyframes subirCorazon {
+
+    0% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg)
+            scale(.8);
+
+    }
+
+    12% {
+
+        opacity:
+            .45;
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-50vh)
+            translateX(25px)
+            rotate(10deg)
+            scale(1);
+
+    }
+
+    85% {
+
+        opacity:
+            .2;
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(-110vh)
+            translateX(-20px)
+            rotate(-12deg)
+            scale(.8);
+
+    }
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+#particulas {
+
+    z-index:
+        2;
+}
+
+.particula {
+
+    position:
+        absolute;
+
+    width:
+        2px;
+
+    height:
+        2px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255, 210, 235, .7);
+
+    box-shadow:
+        0 0 7px
+        rgba(255, 120, 210, .7);
+
+    animation:
+        parpadearParticula
+        4s ease-in-out infinite;
+}
+
+@keyframes parpadearParticula {
+
+    0%,
+    100% {
+
+        opacity:
+            .1;
+
+        transform:
+            scale(.7);
+
+    }
+
+    50% {
+
+        opacity:
+            .85;
+
+        transform:
+            scale(1.5);
+
+    }
+}
+
+
+/* =========================================================
+   TARJETA FINAL
+========================================================= */
+
+.mensaje {
+
+    position:
+        relative;
+
+    z-index:
+        20;
+
+    width:
+        min(
+            88%,
+            620px
+        );
+
+    max-height:
+        88vh;
+
+    overflow:
+        auto;
+
+    padding:
+        clamp(
+            32px,
+            6vw,
+            60px
+        )
+        clamp(
+            22px,
+            6vw,
+            55px
+        );
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        rgba(255, 160, 210, .12);
+
+    border-radius:
+        28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.025),
+            rgba(75,5,40,.08)
+        );
+
+    box-shadow:
+
+        0 30px 100px
+        rgba(0,0,0,.55),
+
+        inset 0 0 70px
+        rgba(255,40,160,.018);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    scrollbar-width:
+        none;
+
+    animation:
+        entradaMensaje 1.5s
+        cubic-bezier(.16, 1, .3, 1)
+        both;
+}
+
+.mensaje::-webkit-scrollbar {
+    display:
+        none;
+}
+
+@keyframes entradaMensaje {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(35px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+
+
+/* =========================================================
+   ETIQUETA
+========================================================= */
+
+.etiqueta {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        11px;
+
+    color:
+        rgba(255, 176, 215, .62);
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .42em;
+
+    margin-left:
+        .42em;
+
+    margin-bottom:
+        24px;
+}
+
+.etiqueta span {
+
+    width:
+        30px;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,110,190,.5)
+        );
+}
+
+.etiqueta span:last-child {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,110,190,.5),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   TÍTULO FINAL
+========================================================= */
+
+.mensaje h1 {
+
+    color:
+        #fff6fb;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            34px,
+            6vw,
+            55px
+        );
+
+    line-height:
+        1.05;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        -.01em;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,60,180,.08);
+}
+
+
+/* =========================================================
+   SEPARADOR
+========================================================= */
+
+.separador {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        14px;
+
+    margin:
+        27px 0;
+
+    color:
+        #ff77c9;
+
+    font-size:
+        13px;
+
+    text-shadow:
+        0 0 10px
+        rgba(255,70,190,.7);
+}
+
+.separador span {
+
+    width:
+        55px;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,110,190,.35)
+        );
+}
+
+.separador span:last-child {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,110,190,.35),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   TEXTO PRINCIPAL
+========================================================= */
+
+.texto-principal {
+
+    max-width:
+        470px;
+
+    margin:
+        0 auto;
+
+    color:
+        rgba(255, 231, 242, .64);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            17px,
+            3vw,
+            21px
+        );
+
+    line-height:
+        1.55;
+
+    font-weight:
+        400;
+}
+
+
+/* =========================================================
+   TE DESEO
+========================================================= */
+
+.te-amo-central {
+
+    margin:
+        29px 0;
+
+    color:
+        #ff94d7;
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size:
+        clamp(
+            23px,
+            5vw,
+            37px
+        );
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        .13em;
+
+    text-shadow:
+
+        0 0 8px
+        rgba(255,100,200,.55),
+
+        0 0 30px
+        rgba(255,20,170,.25);
+
+    animation:
+        pulsoDeseo 3s ease-in-out infinite;
+}
+
+@keyframes pulsoDeseo {
+
+    0%,
+    100% {
+
+        opacity:
+            .8;
+
+        transform:
+            scale(.99);
+
+    }
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1.025);
+
+    }
+}
+
+
+/* =========================================================
+   TEXTO FINAL
+========================================================= */
+
+.texto-final {
+
+    color:
+        rgba(255, 224, 238, .72);
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        clamp(
+            20px,
+            4vw,
+            27px
+        );
+
+    line-height:
+        1.45;
+}
+
+
+/* =========================================================
+   FIRMA
+========================================================= */
+
+.firma {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    margin-top:
+        30px;
+
+    color:
+        rgba(255, 208, 228, .65);
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        18px;
+}
+
+.firma strong {
+
+    color:
+        #ff67bf;
+
+    font-size:
+        15px;
+
+    text-shadow:
+        0 0 12px
+        rgba(255,40,180,.7);
+}
+
+
+/* =========================================================
+   CONTROL DE MÚSICA
+========================================================= */
+
+#control-musica {
+
+    position:
+        absolute;
+
+    z-index:
+        100;
+
+    right:
+        22px;
+
+    bottom:
+        22px;
+
+    width:
+        46px;
+
+    height:
+        46px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        3px;
+
+    border:
+        1px solid
+        rgba(255, 130, 205, .2);
+
+    border-radius:
+        50%;
+
+    color:
+        #ff91d4;
+
+    background:
+        rgba(255,255,255,.025);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    box-shadow:
+        0 0 20px
+        rgba(255,30,180,.06);
+
+    transition:
+        .3s ease;
+}
+
+#control-musica:hover {
+
+    border-color:
+        rgba(255,130,205,.6);
+
+    box-shadow:
+        0 0 25px
+        rgba(255,30,180,.18);
+
+    transform:
+        scale(1.05);
+}
+
+.icono-musica {
+
+    font-size:
+        17px;
+}
+
+.ondas {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        2px;
+
+    height:
+        14px;
+}
+
+.ondas i {
+
+    width:
+        2px;
+
+    height:
+        5px;
+
+    border-radius:
+        3px;
+
+    background:
+        #ff82d1;
+
+    animation:
+        ondaMusica .8s ease-in-out infinite alternate;
+}
+
+.ondas i:nth-child(2) {
+
+    animation-delay:
+        -.2s;
+}
+
+.ondas i:nth-child(3) {
+
+    animation-delay:
+        -.4s;
+}
+
+.ondas i:nth-child(4) {
+
+    animation-delay:
+        -.6s;
+}
+
+@keyframes ondaMusica {
+
+    from {
+        height:
+            4px;
+    }
+
+    to {
+        height:
+            13px;
+    }
+}
+
+#control-musica.pausado .ondas i {
+
+    height:
+        3px;
+
+    animation:
+        none;
+}
+
+
+/* =========================================================
+   FRASE DE ESQUINA
+========================================================= */
+
+.frase-esquina {
+
+    position:
+        absolute;
+
+    z-index:
+        100;
+
+    left:
+        22px;
+
+    bottom:
+        28px;
+
+    color:
+        rgba(255, 205, 225, .35);
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        14px;
+
+    transform:
+        rotate(-6deg);
+
+    pointer-events:
+        none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .galaxia-titulo {
+
+        top:
+            32px;
+    }
+
+    .galaxia-titulo h2 {
+
+        font-size:
+            30px;
+    }
+
+    .galaxia-titulo p {
+
+        font-size:
+            8px;
+    }
+
+    .frase-galaxia {
+
+        font-size:
+            17px;
+    }
+
+    .indicacion-galaxia {
+
+        bottom:
+            22px;
+    }
+
+    .panel-borrar {
+
+        width:
+            91%;
+
+        min-height:
+            520px;
+
+        padding:
+            27px 16px;
+    }
+
+    #scratch-canvas {
+
+        width:
+            100%;
+
+        max-width:
+            350px;
+
+        height:
+            165px;
+    }
+
+    .mensaje {
+
+        width:
+            91%;
+
+        padding:
+            34px 21px;
+    }
+
+    .mensaje h1 {
+
+        font-size:
+            36px;
+    }
+
+    .texto-principal {
+
+        font-size:
+            17px;
+    }
+
+    .te-amo-central {
+
+        font-size:
+            23px;
+    }
+
+    #control-musica {
+
+        right:
+            15px;
+
+        bottom:
+            15px;
+
+        width:
+            42px;
+
+        height:
+            42px;
+    }
+
+    .frase-esquina {
+
+        left:
+            14px;
+
+        bottom:
+            23px;
+
+        font-size:
+            12px;
+    }
+}
+
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .inicio-contenido h1 {
+
+        font-size:
+            68px;
+    }
+
+    .inicio-contenido p {
+
+        font-size:
+            10px;
+    }
+
+    .galaxia-titulo {
+
+        top:
+            25px;
+    }
+
+    .galaxia-titulo h2 {
+
+        font-size:
+            26px;
+    }
+
+    .galaxia-titulo p {
+
+        margin-top:
+            6px;
+    }
+
+    .frase-galaxia {
+
+        font-size:
+            15px;
+    }
+
+    .panel-borrar {
+
+        min-height:
+            490px;
+    }
+
+    .mensaje-cumpleanos h2 {
+
+        font-size:
+            35px;
+    }
+
+    .cumple-amor {
+
+        font-size:
+            35px;
+    }
+
+    .password-card {
+
+        padding:
+            35px 20px;
+    }
+
+    .mensaje {
+
+        max-height:
+            82vh;
+
+        padding:
+            29px 17px;
+    }
+
+    .mensaje h1 {
+
+        font-size:
+            32px;
+    }
+
+    .separador {
+
+        margin:
+            22px 0;
+    }
+
+    .texto-final {
+
+        font-size:
+            19px;
+    }
+}
+
+
+/* =========================================================
+   PANTALLAS MUY ALTAS
+========================================================= */
+
+@media (min-height: 800px) and (max-width: 700px) {
+
+    .galaxia-titulo {
+
+        top:
+            55px;
+    }
+
+    .indicacion-galaxia {
+
+        bottom:
+            40px;
+    }
+}
+
+
+/* =========================================================
+   ORIENTACIÓN HORIZONTAL MÓVIL
+========================================================= */
+
+@media (
+    max-height: 520px
+) and (
+    orientation: landscape
+) {
+
+    .galaxia-titulo {
+
+        top:
+            12px;
+    }
+
+    .galaxia-titulo h2 {
+
+        font-size:
+            23px;
+    }
+
+    .galaxia-titulo p {
+
+        display:
+            none;
+    }
+
+    .indicacion-galaxia {
+
+        bottom:
+            10px;
+    }
+
+    .panel-borrar {
+
+        min-height:
+            85vh;
+
+        padding:
+            15px;
+    }
+
+    .mensaje-cumpleanos {
+
+        margin-bottom:
+            10px;
+    }
+
+    .mensaje-cumpleanos h2 {
+
+        font-size:
+            28px;
+    }
+
+    .cumple-amor {
+
+        font-size:
+            28px;
+    }
+
+    #scratch-canvas {
+
+        height:
+            120px;
+    }
+
+    .password-card {
+
+        padding:
+            20px;
+    }
+
+    .mensaje {
+
+        max-height:
+            90vh;
+
+        padding:
+            20px;
+    }
+
+    .mensaje h1 {
+
+        font-size:
+            29px;
+    }
+
+    .texto-principal {
+
+        font-size:
+            15px;
+    }
+
+    .te-amo-central {
+
+        margin:
+            15px 0;
+
+        font-size:
+            20px;
+    }
+
+    .texto-final {
+
+        font-size:
+            17px;
+    }
+}
+
+
+/* =========================================================
+   REDUCIR ANIMACIONES
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+}

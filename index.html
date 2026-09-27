@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="theme-color"
+          content="#030203">
+
+    <title>Para ti, mi amor</title>
+
+
+    <!-- =========================================
+         FUENTES
+    ========================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =========================================
+         CSS
+    ========================================== -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         ETAPA 1
+         PANTALLA DE INICIO
+    ====================================================== -->
+
+    <section id="pantalla-inicio">
+
+        <div class="inicio-contenido">
+
+            <div class="inicio-linea"></div>
+
+            <span class="inicio-pequeno">
+                PARA TI
+            </span>
+
+            <h1>
+                Mi amor
+            </h1>
+
+            <p>
+                Tengo algo preparado para ti...
+            </p>
+
+            <button id="boton-comenzar">
+
+                <span>
+                    Comenzar
+                </span>
+
+                <span class="flecha">
+                    →
+                </span>
+
+            </button>
+
+            <div class="inicio-linea inferior"></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ETAPA 2
+         UNIVERSO / GALAXIA
+    ====================================================== -->
+
+    <section id="galaxia-pantalla">
+
+
+        <!-- =============================================
+             TÍTULO
+        ============================================== -->
+
+        <div class="galaxia-titulo">
+
+            <span>
+                PARA TI
+            </span>
+
+            <h2>
+                Gira mi universo
+            </h2>
+
+            <p>
+                Explora nuestro pequeño universo...
+            </p>
+
+        </div>
+
+
+
+        <!-- =============================================
+             UNIVERSO 3D
+
+             Todo lo que pertenece a la galaxia está
+             dentro de este contenedor.
+
+             Las frases estarán ligadas al movimiento
+             de la galaxia mediante CSS + JavaScript.
+        ============================================== -->
+
+        <div id="universo-3d">
+
+
+            <!-- =========================================
+                 CAPA DE ESTRELLAS
+            ========================================== -->
+
+            <div id="estrellas-extra"></div>
+
+
+            <!-- =========================================
+                 GALAXIA PRINCIPAL
+
+                 El canvas solamente dibuja la galaxia.
+                 NO contiene imágenes.
+            ========================================== -->
+
+            <canvas id="galaxia"></canvas>
+
+
+
+            <!-- =========================================
+                 FRASES QUE VIAJAN CON EL UNIVERSO
+            ========================================== -->
+
+            <div id="frases-galaxia">
+
+
+                <span class="frase-galaxia f1">
+                    Te amo
+                </span>
+
+
+                <span class="frase-galaxia f2">
+                    Te adoro
+                </span>
+
+
+                <span class="frase-galaxia f3">
+                    Mi amor
+                </span>
+
+
+                <span class="frase-galaxia f4">
+                    Te quiero
+                </span>
+
+
+                <span class="frase-galaxia f5">
+                    Siempre tú
+                </span>
+
+
+                <span class="frase-galaxia f6">
+                    Mi vida
+                </span>
+
+
+                <span class="frase-galaxia f7">
+                    Contigo
+                </span>
+
+
+                <span class="frase-galaxia f8">
+                    Te adoro 
+                </span>
+
+
+                <span class="frase-galaxia f9">
+                    Eres mi todo
+                </span>
+
+
+                <span class="frase-galaxia f10">
+                    Mi cielo
+                </span>
+
+
+                <span class="frase-galaxia f11">
+                    GUAPA 
+                </span>
+
+
+                <span class="frase-galaxia f12">
+                    Mi preciosa
+                </span>
+
+
+                <span class="frase-galaxia f13">
+                    Mi universo
+                </span>
+
+
+                <span class="frase-galaxia f14">
+                    TE EXTRAÑO
+                </span>
+
+
+                <span class="frase-galaxia f15">
+                    MI TODO
+                </span>
+
+
+                <span class="frase-galaxia f16">
+                    PARA SIEMPRE
+                </span>
+
+
+                <span class="frase-galaxia f17">
+                    ❤️
+                </span>
+
+
+                <span class="frase-galaxia f18">
+                    I LOVE YOU
+                </span>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 CENTRO / PORTAL DEL UNIVERSO
+
+                 La interacción se cambiará posteriormente
+                 desde JavaScript por una animación más
+                 inmersiva.
+            ========================================== -->
+
+            <button id="centro-galaxia"
+                    aria-label="Entrar al universo">
+
+                <span class="centro-corazon">
+                    ♥
+                </span>
+
+                <span class="centro-anillo"></span>
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =============================================
+             INDICACIÓN
+        ============================================== -->
+
+        <div class="indicacion-galaxia">
+
+            <span>
+                desliza para explorar
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ETAPA 3
+         VIAJE A LA VELOCIDAD DE LA LUZ
+    ====================================================== -->
+
+    <section id="viaje-luz">
+
+        <div class="tunel-luz"></div>
+
+        <div class="lineas-luz"></div>
+
+        <div class="destello-final"></div>
+
+        <div class="viaje-texto">
+
+            <span>
+                hacia mi corazón...
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ETAPA 4
+         PANEL PARA BORRAR
+    ====================================================== -->
+
+    <section id="pantalla-borrar">
+
+
+        <div class="fondo-estrellas-borrar"></div>
+
+
+        <div class="panel-borrar">
+
+
+            <div class="mensaje-cumpleanos">
+
+
+                <span class="cumple-pequeno">
+                    PARA EL AMOR DE MI VIDA
+                </span>
+
+
+                <h2>
+                    Feliz cumpleaños
+                </h2>
+
+
+                <div class="cumple-amor">
+                    amor
+                </div>
+
+
+                <div class="cumple-corazon">
+                    ♥
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 CANVAS QUE SE BORRA
+            ========================================== -->
+
+            <canvas id="scratch-canvas"></canvas>
+
+
+
+            <div class="texto-borrar">
+
+                <span>
+                    Pasa tu dedo por encima
+                </span>
+
+                <small>
+                    para descubrir mi mensaje
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ETAPA 5
+         CONTRASEÑA
+    ====================================================== -->
+
+    <section id="pantalla-password">
+
+
+        <div class="password-card">
+
+
+            <div class="candado">
+                🔒
+            </div>
+
+
+            <div class="password-linea"></div>
+
+
+            <h2>
+                Abre mi corazón
+            </h2>
+
+
+            <p>
+                Ingresa el año de nuestra fecha especial
+            </p>
+
+
+
+            <div class="codigo-puntos">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+
+            <input
+                id="codigo"
+                type="password"
+                inputmode="numeric"
+                maxlength="4"
+                autocomplete="off"
+                placeholder="••••"
+            >
+
+
+
+            <button id="boton-abrir">
+
+                Abrir mi corazón
+
+                <span>
+                    ♥
+                </span>
+
+            </button>
+
+
+
+            <div id="error-password">
+                Ese no es el código, mi amor ❤️
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ETAPA 6
+         CONTENIDO FINAL
+    ====================================================== -->
+
+    <main id="contenido">
+
+
+        <!-- =============================================
+             FONDOS
+        ============================================== -->
+
+        <div class="brillo-fondo"></div>
+
+        <div class="aurora aurora-1"></div>
+
+        <div class="aurora aurora-2"></div>
+
+
+
+        <!-- =============================================
+             EFECTOS
+        ============================================== -->
+
+        <div id="te-amos"></div>
+
+        <div id="corazones"></div>
+
+        <div id="particulas"></div>
+
+
+
+        <!-- =============================================
+             TARJETA CENTRAL
+        ============================================== -->
+
+        <section class="mensaje">
+
+
+            <div class="etiqueta">
+
+                <span></span>
+
+                PARA TI
+
+                <span></span>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 FOTO ELIMINADA
+
+                 Ya no se carga fondo.jpg.
+            ========================================== -->
+
+
+
+            <!-- =========================================
+                 TITULO
+            ========================================== -->
+
+            <h1>
+
+                Para la mujer<br>
+
+                que hace especial mi vida.
+
+            </h1>
+
+
+
+            <!-- =========================================
+                 SEPARADOR
+            ========================================== -->
+
+            <div class="separador">
+
+                <span></span>
+
+                ♥
+
+                <span></span>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 TEXTO
+            ========================================== -->
+
+            <p class="texto-principal">
+
+                Quizá no siempre encuentre las palabras
+                correctas para decirte todo lo que siento.
+                Pero hay algo que nunca cambia.
+
+            </p>
+
+
+
+            <!-- =========================================
+                 FRASE CENTRAL
+            ========================================== -->
+
+            <div class="te-amo-central">
+
+                𝐓𝐄 𝐃𝐄𝐒𝐄𝐎
+
+            </div>
+
+
+
+            <!-- =========================================
+                 TEXTO FINAL
+            ========================================== -->
+
+            <p class="texto-final">
+
+                Y si pudiera elegir de nuevo,
+                volvería a encontrarte a ti.
+
+            </p>
+
+
+
+            <!-- =========================================
+                 FIRMA
+            ========================================== -->
+
+            <div class="firma">
+
+                <span>
+                    Siempre tuyo
+                </span>
+
+                <strong>
+                    ♥
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =============================================
+             CONTROL DE MÚSICA
+        ============================================== -->
+
+        <button id="control-musica"
+                aria-label="Controlar música">
+
+            <span class="icono-musica">
+                ♫
+            </span>
+
+
+            <span class="ondas">
+
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+
+            </span>
+
+        </button>
+
+
+
+        <div class="frase-esquina">
+
+            contigo, siempre.
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MÚSICA
+    ====================================================== -->
+
+    <audio id="musica"
+           loop>
+
+        <source src="musica.mp3"
+                type="audio/mpeg">
+
+    </audio>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
