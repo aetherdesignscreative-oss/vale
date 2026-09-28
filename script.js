@@ -243,6 +243,112 @@ function iniciarMusica() {
 
 
 /* =========================================================
+   NUEVO
+   PANEL DE SELECCIÓN DE CANCIONES
+
+   Al hacer click en "Comenzar" ya NO se entra directo
+   a la galaxia. Primero se muestra un panel para elegir
+   la canción. Cuando el usuario elige, se reproduce esa
+   canción y a partir de ahí TODO sigue exactamente igual
+   que antes (mismo iniciarGalaxia(), sin cambios).
+========================================================= */
+
+const panelCanciones =
+    document.getElementById("panel-canciones");
+
+const cancionPorDefecto =
+    "musica.mp3";
+
+let cancionElegida =
+    cancionPorDefecto;
+
+
+function seleccionarCancion(src) {
+
+    cancionElegida = src;
+
+    if (musica) {
+
+        const estabaSonando =
+            !musica.paused;
+
+        musica.src = src;
+
+        if (estabaSonando || musicaActiva) {
+
+            musica.play()
+                .then(function () {
+
+                    musicaActiva = true;
+
+                    if (controlMusica) {
+
+                        controlMusica
+                            .classList
+                            .remove("pausado");
+
+                    }
+
+                })
+                .catch(function () {});
+
+        }
+
+    }
+
+
+    document.querySelectorAll(".opcion-cancion")
+        .forEach(function (boton) {
+
+            boton.classList.toggle(
+                "activa",
+                boton.getAttribute("data-src") === src
+            );
+
+        });
+
+}
+
+
+document.querySelectorAll(
+    "#panel-canciones .opcion-cancion"
+).forEach(function (boton) {
+
+    boton.addEventListener("click", function () {
+
+        seleccionarCancion(
+            boton.getAttribute("data-src")
+        );
+
+
+        if (panelCanciones) {
+
+            panelCanciones
+                .classList
+                .remove("visible");
+
+        }
+
+
+        setTimeout(
+            function () {
+
+                galaxiaPantalla
+                    .classList
+                    .add("visible");
+
+                iniciarGalaxia();
+
+            },
+            700
+        );
+
+    });
+
+});
+
+
+/* =========================================================
    BOTÓN COMENZAR
 ========================================================= */
 
@@ -251,6 +357,13 @@ if (botonComenzar) {
     botonComenzar.addEventListener(
         "click",
         function () {
+
+            if (musica) {
+
+                musica.src =
+                    cancionElegida;
+
+            }
 
             iniciarMusica();
 
@@ -262,11 +375,21 @@ if (botonComenzar) {
             setTimeout(
                 function () {
 
-                    galaxiaPantalla
-                        .classList
-                        .add("visible");
+                    if (panelCanciones) {
 
-                    iniciarGalaxia();
+                        panelCanciones
+                            .classList
+                            .add("visible");
+
+                    } else {
+
+                        galaxiaPantalla
+                            .classList
+                            .add("visible");
+
+                        iniciarGalaxia();
+
+                    }
 
                 },
                 900
@@ -3563,3 +3686,157 @@ camaraY = 0;
 objetivoCamaraX = 0;
 
 objetivoCamaraY = 0;
+
+
+/* =========================================================
+   NUEVO
+   BOTONES EXTRA DEL PANEL FINAL
+   (MÚSICA / FOTOS / CARTA) + MODALES
+========================================================= */
+
+const botonCambiarMusica =
+    document.getElementById("boton-cambiar-musica");
+
+const botonVerFotos =
+    document.getElementById("boton-ver-fotos");
+
+const botonVerCarta =
+    document.getElementById("boton-ver-carta");
+
+const modalMusica =
+    document.getElementById("modal-musica");
+
+const modalFotos =
+    document.getElementById("modal-fotos");
+
+const modalCarta =
+    document.getElementById("modal-carta");
+
+
+function abrirModal(modal) {
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.add("visible");
+
+}
+
+
+function cerrarModal(modal) {
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.remove("visible");
+
+}
+
+
+if (botonCambiarMusica) {
+
+    botonCambiarMusica.addEventListener(
+        "click",
+        function () {
+
+            abrirModal(modalMusica);
+
+        }
+    );
+
+}
+
+
+if (botonVerFotos) {
+
+    botonVerFotos.addEventListener(
+        "click",
+        function () {
+
+            abrirModal(modalFotos);
+
+        }
+    );
+
+}
+
+
+if (botonVerCarta) {
+
+    botonVerCarta.addEventListener(
+        "click",
+        function () {
+
+            abrirModal(modalCarta);
+
+        }
+    );
+
+}
+
+
+/*
+   Botones de cerrar (✕) dentro de cualquier modal
+*/
+
+document.querySelectorAll(".modal-cerrar")
+    .forEach(function (boton) {
+
+        boton.addEventListener("click", function () {
+
+            const idModal =
+                boton.getAttribute("data-cerrar");
+
+            cerrarModal(
+                document.getElementById(idModal)
+            );
+
+        });
+
+    });
+
+
+/*
+   Cerrar el modal si se hace click fuera de la caja
+*/
+
+document.querySelectorAll(".modal-overlay")
+    .forEach(function (overlay) {
+
+        overlay.addEventListener("click", function (e) {
+
+            if (e.target === overlay) {
+
+                cerrarModal(overlay);
+
+            }
+
+        });
+
+    });
+
+
+/*
+   Elegir canción desde el modal de música
+   (reutiliza la misma función seleccionarCancion,
+   pero NO reinicia la galaxia, solo cambia la canción)
+*/
+
+document.querySelectorAll(
+    "#modal-musica .opcion-cancion"
+).forEach(function (boton) {
+
+    boton.addEventListener("click", function () {
+
+        seleccionarCancion(
+            boton.getAttribute("data-src")
+        );
+
+        cerrarModal(modalMusica);
+
+    });
+
+});
+

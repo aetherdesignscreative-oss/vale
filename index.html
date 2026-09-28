@@ -86,6 +86,71 @@
 
 
     <!-- =====================================================
+         ETAPA 1.5 (NUEVA)
+         PANEL DE SELECCIÓN DE CANCIONES
+
+         No modifica nada de lo anterior. Al elegir una
+         canción se guarda como música de fondo y luego
+         continúa exactamente igual la galaxia.
+    ====================================================== -->
+
+    <section id="panel-canciones">
+
+        <div class="canciones-contenido">
+
+            <span class="canciones-pequeno">
+                ELIGE LA MÚSICA
+            </span>
+
+            <h2>
+                ¿Qué quieres escuchar?
+            </h2>
+
+            <p>
+                Elige la canción que sonará en nuestro universo
+            </p>
+
+            <div class="lista-canciones">
+
+                <button class="opcion-cancion"
+                        data-src="campus fashion.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Campus Fashion</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="in a god day.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">In A God Day</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="musica.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Música</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="next to you.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Next To You</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="origami.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Origami</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
          ETAPA 2
          UNIVERSO / GALAXIA
     ====================================================== -->
@@ -639,7 +704,141 @@
         </div>
 
 
+
+        <!-- =============================================
+             NUEVO
+             BOTONES EXTRA (MÚSICA / FOTOS / CARTA)
+
+             Se ubican debajo del mensaje, hay que
+             bajar para verlos. No afectan nada de
+             lo que ya existía arriba.
+        ============================================== -->
+
+        <div id="acciones-extra">
+
+            <button id="boton-cambiar-musica"
+                    aria-label="Cambiar canción">
+                <span>♪</span>
+                <small>Música</small>
+            </button>
+
+            <button id="boton-ver-fotos"
+                    aria-label="Ver fotos">
+                <span>📷</span>
+                <small>Fotos</small>
+            </button>
+
+            <button id="boton-ver-carta"
+                    aria-label="Ver carta">
+                <span>💌</span>
+                <small>Carta</small>
+            </button>
+
+        </div>
+
+
     </main>
+
+
+
+    <!-- =====================================================
+         NUEVO
+         MODAL: CAMBIAR CANCIÓN
+    ====================================================== -->
+
+    <div id="modal-musica" class="modal-overlay">
+
+        <div class="modal-caja">
+
+            <button class="modal-cerrar"
+                    data-cerrar="modal-musica">✕</button>
+
+            <h3>Elige otra canción</h3>
+
+            <div class="lista-canciones lista-canciones-modal">
+
+                <button class="opcion-cancion"
+                        data-src="campus fashion.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Campus Fashion</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="in a god day.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">In A God Day</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="musica.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Música</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="next to you.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Next To You</span>
+                </button>
+
+                <button class="opcion-cancion"
+                        data-src="origami.mp3">
+                    <span class="cancion-icono">♪</span>
+                    <span class="cancion-nombre">Origami</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NUEVO
+         MODAL: FOTOS
+    ====================================================== -->
+
+    <div id="modal-fotos" class="modal-overlay">
+
+        <div class="modal-caja">
+
+            <button class="modal-cerrar"
+                    data-cerrar="modal-fotos">✕</button>
+
+            <h3>Nuestras fotos</h3>
+
+            <p class="modal-texto">
+                Por ahora no hay suficientes fotos disponibles...
+                ¡Tómate más conmigo! 💕
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NUEVO
+         MODAL: CARTA COMPLETA
+    ====================================================== -->
+
+    <div id="modal-carta" class="modal-overlay">
+
+        <div class="modal-caja modal-caja-carta">
+
+            <button class="modal-cerrar"
+                    data-cerrar="modal-carta">✕</button>
+
+            <img src="carta.png"
+                 alt="Carta"
+                 class="carta-imagen">
+
+        </div>
+
+    </div>
 
 
 

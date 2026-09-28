@@ -3963,3 +3963,388 @@ canvas {
             .01ms !important;
     }
 }
+
+
+/* =========================================================
+   NUEVO
+   ETAPA 1.5 - PANEL DE SELECCIÓN DE CANCIONES
+========================================================= */
+
+#panel-canciones {
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 950;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(105, 12, 83, .26),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(83, 8, 65, .20),
+            transparent 48%
+        ),
+        #010001;
+
+    transition:
+        opacity .9s ease,
+        visibility .9s ease;
+}
+
+#panel-canciones.visible {
+
+    opacity: 1;
+    visibility: visible;
+}
+
+.canciones-contenido {
+
+    width: min(90%, 480px);
+
+    max-height: 86vh;
+
+    overflow-y: auto;
+
+    scrollbar-width: none;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+.canciones-contenido::-webkit-scrollbar {
+    display: none;
+}
+
+.canciones-pequeno {
+
+    display: block;
+
+    letter-spacing: 4px;
+
+    font-size: 12px;
+
+    color: var(--rosa-claro, #ff9de8);
+
+    font-family: "Montserrat", sans-serif;
+
+    margin-bottom: 10px;
+}
+
+.canciones-contenido h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(26px, 6vw, 38px);
+
+    margin-bottom: 8px;
+
+    background: linear-gradient(90deg, #ff9de8, #ff4fcf);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.canciones-contenido p {
+
+    color: var(--texto-suave, rgba(255, 225, 240, .62));
+
+    font-size: 15px;
+
+    margin-bottom: 26px;
+}
+
+.lista-canciones {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.opcion-cancion {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 14px 18px;
+
+    border: 1px solid rgba(255, 130, 205, .25);
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, .03);
+
+    color: #fff7fc;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 17px;
+
+    text-align: left;
+
+    transition: .3s ease;
+}
+
+.opcion-cancion:hover,
+.opcion-cancion:active {
+
+    border-color: rgba(255, 130, 205, .7);
+
+    background: rgba(255, 60, 160, .1);
+
+    transform: translateY(-2px);
+}
+
+.opcion-cancion.activa {
+
+    border-color: #ff4fcf;
+
+    box-shadow: 0 0 18px rgba(255, 30, 180, .3);
+}
+
+.cancion-icono {
+
+    font-size: 18px;
+
+    color: #ff82d1;
+}
+
+
+/* =========================================================
+   NUEVO
+   BOTONES EXTRA (MÚSICA / FOTOS / CARTA)
+========================================================= */
+
+#acciones-extra {
+
+    position: relative;
+
+    z-index: 20;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 16px;
+
+    margin-top: 26px;
+}
+
+#acciones-extra button {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 4px;
+
+    width: 64px;
+
+    padding: 10px 6px;
+
+    border: 1px solid rgba(255, 130, 205, .25);
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, .025);
+
+    color: #ff91d4;
+
+    font-family: "Montserrat", sans-serif;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: .3s ease;
+}
+
+#acciones-extra button span {
+    font-size: 18px;
+}
+
+#acciones-extra button small {
+    font-size: 10px;
+    letter-spacing: .5px;
+}
+
+#acciones-extra button:hover {
+
+    border-color: rgba(255, 130, 205, .6);
+
+    box-shadow: 0 0 20px rgba(255, 30, 180, .18);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   NUEVO
+   MODALES (MÚSICA / FOTOS / CARTA)
+========================================================= */
+
+.modal-overlay {
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    background: rgba(2, 0, 2, .82);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+.modal-overlay.visible {
+
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-caja {
+
+    position: relative;
+
+    width: min(92%, 460px);
+
+    max-height: 86vh;
+
+    overflow-y: auto;
+
+    scrollbar-width: none;
+
+    padding: 32px 24px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 160, 210, .15);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.03),
+            rgba(75,5,40,.12)
+        ),
+        #100010;
+
+    box-shadow: 0 30px 90px rgba(0,0,0,.6);
+
+    transform: scale(.94);
+
+    transition: transform .35s ease;
+}
+
+.modal-overlay.visible .modal-caja {
+    transform: scale(1);
+}
+
+.modal-caja::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-caja h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 24px;
+
+    margin-bottom: 20px;
+
+    color: #ffd7ef;
+}
+
+.modal-cerrar {
+
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,.05);
+
+    color: #ff9de8;
+
+    font-size: 15px;
+}
+
+.modal-texto {
+
+    color: var(--texto, rgba(255, 245, 250, .88));
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+.lista-canciones-modal {
+    margin-top: 6px;
+}
+
+.modal-caja-carta {
+
+    padding: 14px;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+.carta-imagen {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    border-radius: 16px;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+
