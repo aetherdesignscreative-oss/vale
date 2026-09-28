@@ -83,7 +83,7 @@ const particulas =
 ========================================================= */
 
 const CONTRASENA =
-    "2026";
+    "ROBLOX";
 
 let musicaActiva = false;
 
@@ -257,7 +257,7 @@ const panelCanciones =
     document.getElementById("panel-canciones");
 
 const cancionPorDefecto =
-    "musica.mp3";
+    "campus fashion.mp3";
 
 let cancionElegida =
     cancionPorDefecto;
