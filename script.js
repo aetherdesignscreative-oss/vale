@@ -83,7 +83,7 @@ const particulas =
 ========================================================= */
 
 const CONTRASENA =
-    "ROBLOX";
+    "2803";
 
 let musicaActiva = false;
 
